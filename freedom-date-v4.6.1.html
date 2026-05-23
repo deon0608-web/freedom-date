@@ -1,0 +1,4487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freedom Date — When can you actually leave?</title>
+<meta property="og:title" content="Freedom Date — When can you actually leave?">
+<meta property="og:description" content="Plug in your debt. See the exact date you can leave. Used by expats, teachers & nomads worldwide.">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Syne:wght@400;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f7f4ee;
+  --ink: #111108;
+  --card: #ffffff;
+  --lime: #e2f530;
+  --lime-dark: #b8c820;
+  --lime-dim: rgba(212,245,60,0.12);
+  --muted: #888878;
+  --border: #e0dcd2;
+  --red: #e84040;
+  --surface: #f0ece3;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── LAYOUT ── */
+.hero {
+  max-width: 520px;
+  width: 100%;
+  padding: 60px 24px 80px;
+}
+
+.kicker {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(52px, 8vw, 72px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  max-width: 420px;
+}
+
+h1 .hl {
+  background: var(--lime);
+  padding: 0 8px 4px;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 40px;
+  max-width: 380px;
+}
+
+.select-field {
+  width: 100%;
+  padding: 13px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  text-align-last: left;
+  transition: border-color 0.15s;
+}
+.select-field:focus { border-color: var(--ink); }
+
+.user-select {
+  flex: 1;
+  width: 100%;
+  padding: 13px 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  text-align: left;
+  text-align-last: left;
+}
+
+/* ── SECTION LABELS ── */
+.sec-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--lime);
+}
+
+/* ── INCOME / EXPENSE GRID ── */
+.two-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.input-wrap {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.input-wrap:focus-within { border-color: var(--ink); }
+
+.input-wrap input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  padding: 13px 14px;
+  min-width: 0;
+}
+.input-wrap input::placeholder { color: #ccc; font-weight: 400; font-size: 18px; }
+
+.input-wrap select {
+  background: var(--surface);
+  border: none;
+  border-left: 1.5px solid var(--border);
+  outline: none;
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 0 10px;
+  cursor: pointer;
+  appearance: none;
+  min-width: 62px;
+  text-align: center;
+}
+
+/* ── DEBT ROWS ── */
+.debt-section { margin-bottom: 32px; }
+
+.debt-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+
+.debt-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  transition: border-color 0.15s;
+  animation: rowIn 0.25s ease both;
+}
+
+.debt-row-top {
+  width: 100%;
+}
+
+.debt-row-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 70px 32px;
+  gap: 10px;
+  align-items: center;
+}
+@keyframes rowIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+.debt-row:focus-within { border-color: var(--ink); }
+
+.debt-row input, .debt-row select {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  width: 100%;
+  padding: 0;
+  min-width: 0;
+}
+.debt-row input::placeholder { color: #ccc; font-weight: 400; }
+.debt-row select {
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  appearance: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.debt-col-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.debt-header {
+  display: none;
+}
+
+.del-btn {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 1;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.del-btn:hover { border-color: var(--red); color: var(--red); background: rgba(232,64,64,0.06); }
+
+.add-debt-btn {
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.add-debt-btn:hover { border-color: var(--ink); color: var(--ink); background: var(--surface); }
+
+/* ── EXIT FUND ── */
+.exit-section { margin-bottom: 32px; }
+
+/* ── CTA ── */
+.cta-btn {
+  width: calc(100% + 48px);
+  margin-left: -24px;
+  padding: 28px 20px;
+  background: var(--lime);
+  color: var(--ink);
+  border: none;
+  border-radius: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: 36px;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+.cta-btn:active { transform: translateY(0); }
+
+.no-bs {
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── MODE SWITCHER ── */
+.mode-switcher {
+  display: flex;
+  border: 3px solid var(--ink);
+  margin-bottom: 36px;
+  position: relative;
+  background: var(--bg);
+}
+.mode-tab {
+  flex: 1;
+  padding: 14px 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--muted);
+  transition: background 0.15s, color 0.15s;
+  position: relative;
+  line-height: 1.2;
+}
+.mode-tab:first-child {
+  border-right: 3px solid var(--ink);
+}
+.mode-tab.active {
+  background: var(--ink);
+  color: var(--lime);
+}
+.mode-tab .tab-sub {
+  display: block;
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: none;
+  margin-top: 3px;
+  opacity: 0.6;
+}
+.mode-tab.active .tab-sub { opacity: 0.7; }
+.mode-tab-locked {
+  cursor: not-allowed;
+  position: relative;
+  color: var(--muted) !important;
+  background: var(--bg);
+}
+.mode-tab-locked:hover {
+  color: var(--ink) !important;
+  background: var(--surface);
+}
+.mode-tab-locked .tab-sub {
+  color: var(--muted);
+  opacity: 0.7;
+}
+.soon-badge {
+  display: inline-block;
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--lime-dark);
+  border: 1.5px solid var(--lime-dark);
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 7px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.soon-tooltip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background: var(--ink);
+  border: 2px solid rgba(212,245,60,0.25);
+  padding: 16px 18px;
+  z-index: 200;
+  text-align: left;
+  border-radius: 4px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+.soon-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(212,245,60,0.25);
+}
+.soon-tooltip::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--ink);
+}
+.mode-tab-locked:hover .soon-tooltip { display: block; }
+.soon-tooltip-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--lime);
+  margin-bottom: 10px;
+}
+.soon-tooltip-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 10px;
+}
+.soon-tooltip-item {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+  line-height: 1;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mode-tab-locked .tab-sub {
+  color: rgba(255,255,255,0.2);
+  opacity: 1;
+}
+.soon-tooltip-footer {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  font-style: italic;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+
+/* ── STANDARD MODE FIELDS ── */
+.std-field {
+  margin-bottom: 22px;
+}
+.std-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 10px;
+  line-height: 1.0;
+}
+.std-label.audit-label {
+  font-size: clamp(28px, 6vw, 36px);
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.std-hint {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  display: block;
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+}
+.std-input-wrap {
+  display: flex;
+  border: 3px solid var(--ink);
+  background: var(--card);
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.std-input-wrap:focus-within {
+  box-shadow: 0 0 0 3px rgba(212,245,60,0.35);
+}
+.std-input-wrap input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  padding: 16px 18px;
+  min-width: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.std-input-wrap input::placeholder { color: #ccc; font-weight: 400; font-size: 22px; }
+.std-input-wrap select {
+  background: var(--surface);
+  border: none;
+  border-left: 3px solid var(--ink);
+  outline: none;
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 0 12px;
+  cursor: pointer;
+  appearance: none;
+  min-width: 66px;
+  text-align: center;
+}
+.std-select {
+  width: 100%;
+  padding: 16px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  background: var(--card);
+  border: 3px solid var(--ink);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: box-shadow 0.15s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111108' stroke-width='2' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+}
+.std-select:focus { box-shadow: 0 0 0 3px rgba(212,245,60,0.35); }
+
+/* ── UNIFIED WIZARD ── */
+.uw-progress { display: none; }
+.uw-phase {
+  display: none;
+}
+.uw-step-dots {
+  display: none;
+}
+.uw-phase-shift {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--lime-dark);
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: rgba(212,245,60,0.1);
+  border-left: 3px solid var(--lime-dark);
+}
+.uw-phase-shift { display: none; }
+.uw-step { animation: modeFade 0.25s ease both; }
+.uw-q-num {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.uw-q-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.uw-q {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.uw-hint {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  display: block;
+}
+.uw-select {
+  width: 100%;
+  padding: 16px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--card);
+  border: 3px solid var(--ink);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111108' stroke-width='2' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+  margin-bottom: 0;
+  transition: box-shadow 0.15s;
+}
+.uw-select:focus { box-shadow: 0 0 0 3px rgba(212,245,60,0.3); }
+
+.uw-input-wrap {
+  display: flex;
+  border: 3px solid var(--ink);
+  background: var(--card);
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.uw-input-wrap:focus-within { box-shadow: 0 0 0 3px rgba(212,245,60,0.3); }
+.uw-input-wrap input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ink);
+  padding: 16px 18px;
+  min-width: 0;
+}
+.uw-input-wrap input::placeholder { color: #ccc; font-weight: 400; font-size: 22px; }
+.uw-input-wrap select {
+  background: var(--surface);
+  border: none;
+  border-left: 3px solid var(--ink);
+  outline: none;
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 0 12px;
+  cursor: pointer;
+  appearance: none;
+  min-width: 66px;
+  text-align: center;
+}
+
+.uw-pill-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.uw-pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.uw-pill:hover { background: var(--surface); }
+.uw-pill.active { background: var(--ink); color: var(--lime); }
+
+.uw-next {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--lime);
+  color: var(--ink);
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.uw-next:disabled { opacity: 0.25; cursor: not-allowed; background: var(--border); color: var(--muted); }
+.uw-next:not(:disabled):hover { opacity: 0.85; }
+.uw-back {
+  display: inline-block;
+  margin-top: 12px;
+  background: none;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+}
+
+.uw-spend-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 8px;
+  display: block;
+}
+.uw-spend-sub {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-left: 8px;
+  text-transform: none;
+}
+
+/* Live ticker */
+.uw-live {
+  background: var(--ink);
+  padding: 16px 18px 18px;
+  margin-bottom: 14px;
+}
+.uw-live-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 5px 0;
+}
+.uw-live-lbl {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+.uw-live-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.55);
+}
+.uw-neg { color: rgba(255,100,100,0.7) !important; }
+.uw-live-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 8px 0; }
+.uw-surplus {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--lime);
+  letter-spacing: -1px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.uw-surplus.neg { color: #ff6060; }
+
+.uw-lock {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--ink);
+  color: var(--lime);
+  border: none;
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: opacity 0.15s;
+}
+.uw-lock:hover { opacity: 0.85; }
+
+/* Summary card */
+.uw-summary { animation: modeFade 0.3s ease both; margin-top: 4px; }
+.uw-sum-phase-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  display: block;
+}
+.uw-sum-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+.uw-sum-stat {
+  background: var(--ink);
+  padding: 14px 16px;
+}
+.uw-sum-full { grid-column: 1 / -1; background: rgba(17,17,8,0.9); }
+.uw-ss-lbl {
+  display: block;
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.uw-ss-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.uw-ss-lime { color: var(--lime); font-size: 28px; }
+.uw-sum-divider { height: 3px; background: var(--border); margin: 0; }
+.uw-edit-btn {
+  margin-top: 14px;
+  background: none;
+  border: 1.5px solid var(--border);
+  padding: 10px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-block;
+}
+.uw-edit-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+
+.sw-step { animation: modeFade 0.22s ease both; }
+
+.sw-step-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+.sw-hint {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Live calculation ticker */
+.sw-live {
+  margin-top: 16px;
+  border: 3px solid var(--ink);
+  background: var(--ink);
+  padding: 16px 18px 18px;
+}
+.sw-live-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 5px 0;
+}
+.sw-live-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+.sw-live-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px;
+}
+.sw-neg { color: rgba(255,100,100,0.7) !important; }
+.sw-live-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 8px 0;
+}
+.sw-live-result { margin-top: 2px; }
+.sw-live-result .sw-live-label {
+  color: rgba(255,255,255,0.5);
+  font-size: 10px;
+  letter-spacing: 2.5px;
+}
+.sw-live-surplus {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--lime);
+  letter-spacing: -1px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.sw-live-surplus.neg { color: #ff6060; }
+.sw-lock-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--lime);
+  color: var(--ink);
+  border: none;
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  display: block;
+}
+.sw-lock-btn:hover { opacity: 0.85; }
+
+
+.ftw-step { animation: modeFade 0.22s ease both; }
+.ftw-q {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.ftw-hint {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  display: block;
+  line-height: 1.6;
+}
+.ftw-input-row {
+  display: flex;
+  gap: 0;
+  margin-bottom: 14px;
+}
+.ftw-input-row .std-input-wrap {
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+}
+.ftw-input-row .std-input-wrap input {
+  color: #fff;
+  font-size: 28px;
+}
+.ftw-input-row .std-input-wrap input::placeholder { color: rgba(255,255,255,0.2); }
+.ftw-input-row .std-input-wrap select {
+  background: rgba(255,255,255,0.08);
+  border-left-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+}
+.ftw-next {
+  width: 100%;
+  padding: 14px;
+  background: var(--lime);
+  color: var(--ink);
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 10px;
+  transition: opacity 0.15s;
+}
+.ftw-next:hover { opacity: 0.85; }
+.ftw-back {
+  background: none;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+}
+
+
+.xwiz-step { animation: modeFade 0.22s ease both; }
+.xwiz-q {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+.xwiz-sub {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  display: block;
+}
+.xwiz-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.xwiz-pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.xwiz-pill:hover, .xwiz-pill.active {
+  background: var(--ink);
+  color: var(--lime);
+}
+.xwiz-next-btn {
+  margin-top: 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  background: var(--ink);
+  color: var(--lime);
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  transition: opacity 0.15s;
+}
+.xwiz-next-btn:hover { opacity: 0.85; }
+.xwiz-back-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0 0;
+  display: inline-block;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.xwiz-result {
+  background: var(--ink);
+  padding: 20px;
+  animation: modeFade 0.25s ease both;
+}
+.xwiz-result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.xwiz-stat {
+  background: rgba(255,255,255,0.06);
+  padding: 12px 14px;
+}
+.xwiz-stat-total {
+  grid-column: 1 / -1;
+  background: var(--lime);
+}
+.xwiz-stat-label {
+  display: block;
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 5px;
+}
+.xwiz-stat-total .xwiz-stat-label { color: rgba(0,0,0,0.45); }
+.xwiz-stat-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.xwiz-stat-total .xwiz-stat-val { color: var(--ink); font-size: 32px; }
+.xwiz-apply-btn {
+  flex: 1;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 13px 20px;
+  background: var(--lime);
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.xwiz-apply-btn:hover { opacity: 0.85; }
+.xwiz-applied {
+  border: 3px solid var(--lime-dark);
+  background: var(--card);
+  padding: 18px;
+  animation: modeFade 0.2s ease both;
+}
+.xwiz-applied-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.xwiz-applied-val {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  margin-top: 4px;
+}
+
+
+@keyframes modeFade {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+
+.tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: help;
+  margin-left: 7px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  user-select: none;
+}
+.tooltip-icon:hover { background: var(--lime); border-color: var(--lime-dark); color: var(--ink); }
+.tooltip-bubble {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  z-index: 100;
+  background: var(--ink);
+  color: rgba(255,255,255,0.88);
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 10px 14px;
+  border-radius: 8px;
+  width: 240px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+.tooltip-bubble::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 14px;
+  width: 10px;
+  height: 6px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: var(--ink);
+}
+.tooltip-wrap:hover .tooltip-bubble,
+.tooltip-icon:focus + .tooltip-bubble { display: block; }
+
+/* ── ENHANCED INPUT FOCUS GLOW ── */
+.input-wrap:focus-within {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(212,245,60,0.22);
+}
+.select-field:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(212,245,60,0.22);
+  outline: none;
+}
+
+/* ── FIELD SUBTEXT ── */
+.field-hint {
+  font-family: 'Syne', sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 5px;
+  display: block;
+}
+.field-hint strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ── HINT BADGE (inline example) ── */
+.hint-badge {
+  display: inline-block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  padding: 2px 7px;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+
+/* ── RESULTS ── */
+#result-screen {
+  display: none;
+  max-width: 520px;
+  width: 100%;
+  padding: 40px 24px 80px;
+}
+#result-screen.show {
+  display: block;
+  animation: popIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes popIn {
+  from { opacity:0; transform:translateY(24px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* result hero card */
+.result-hero {
+  background: var(--ink);
+  border-radius: 16px;
+  padding: 32px 28px 32px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: clip;
+}
+.result-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(212,245,60,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.r-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 10px;
+}
+
+.r-date {
+  font-size: clamp(38px, 8vw, 56px);
+  font-weight: 800;
+  color: var(--lime);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+}
+
+.r-months {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 24px;
+}
+
+/* comparison badge */
+
+
+.r-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.rstat {
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 12px 10px;
+}
+.rstat .rs-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 6px;
+}
+.rstat .rs-val {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.rstat .rs-val.pos { color: var(--lime); }
+.rstat .rs-val.neg { color: #ff7070; }
+.rstat .rs-val.dz  { color: #7dd3fc; }
+
+
+
+/* debt breakdown */
+.breakdown {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0;
+  padding: 20px;
+  margin-bottom: 0;
+}
+.breakdown h3 {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 16px;
+}
+.bar-item { margin-bottom: 12px; }
+.bar-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.bar-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); }
+.bar-amt { font-family: 'Syne Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); }
+.bar-track { height: 4px; background: rgba(255,255,255,0.08); border-radius: 0; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 0; width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+
+/* share */
+.share-btn {
+  width: 100%;
+  padding: 18px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.15s;
+  margin-bottom: 10px;
+}
+.share-btn:hover { background: #1a1a1a; transform: translateY(-1px); }
+
+.x-icon { width: 17px; height: 17px; fill: #fff; flex-shrink: 0; }
+
+.reset-btn {
+  width: 100%;
+  padding: 14px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 20px;
+}
+.reset-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+.built-by {
+  text-align: center;
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.built-by a { color: var(--ink); text-decoration: none; font-weight: 700; }
+
+/* ── LIVE TICKER ── */
+.ticker-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--ink);
+  padding: 0;
+  z-index: 1000;
+  display: none;
+  box-sizing: border-box;
+}
+.ticker-wrap.visible { display: block; }
+.ticker-header {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-width: 100vw;
+}
+.ticker-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--lime);
+  background: var(--ink);
+  padding: 10px 16px;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.ticker-live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  animation: pulse 1.5s ease infinite;
+  flex-shrink: 0;
+}
+.ticker-scroll-area {
+  overflow: hidden;
+  flex: 1;
+  padding: 10px 0;
+}
+.ticker-track {
+  display: flex;
+  gap: 0;
+  animation: tickerScroll 120s linear infinite;
+  width: max-content;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 32px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.ticker-item .ti-flag { font-size: 15px; }
+.ticker-item .ti-date { color: var(--lime); font-weight: 900; }
+.ticker-item .ti-dot {
+  width: 3px; height: 3px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Push result screen down when ticker is showing */
+#result-screen.ticker-visible { padding-top: 42px; }
+
+
+.live-stream {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1.5px solid var(--border);
+}
+
+.live-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 1.5s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.live-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.stream-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.stream-item-new {
+  animation: feedSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stream-item-exit {
+  animation: feedSlideOut 0.4s ease both;
+}
+
+@keyframes feedSlideIn {
+  from { opacity:0; transform:translateY(-12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes feedSlideOut {
+  from { opacity:1; transform:translateY(0); max-height:60px; }
+  to   { opacity:0; transform:translateY(4px); max-height:0; padding:0; }
+}
+
+.stream-flag { font-size: 20px; flex-shrink: 0; line-height: 1; width: 24px; text-align: center; }
+
+.stream-text { flex: 1; }
+.stream-text .st-main {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.stream-text .st-main .freedom-hi { color: var(--lime-dark); }
+.stream-text .st-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+  text-transform: uppercase;
+}
+
+.stream-time {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  color: #ccc;
+  flex-shrink: 0;
+}
+
+/* ── HORIZON CALIBRATOR — SECOND FOLD ─────────────────────────────────────── */
+
+/* Baseline label on result hero */
+.baseline-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 4px;
+}
+
+/* Hazard transition block */
+.hazard-block {
+  background: var(--lime);
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  margin: 28px -24px 0;
+  padding: 28px 24px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hazard-stripes {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 7px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ink) 0px,
+    var(--ink) 5px,
+    var(--lime) 5px,
+    var(--lime) 10px
+  );
+}
+.hazard-stripes-bottom {
+  top: auto; bottom: 0;
+}
+.hazard-block h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin: 10px 0 8px;
+}
+.hazard-block p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.55);
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+}
+
+/* Calibrator panel reveal */
+#calibrator-panel {
+  animation: none;
+}
+#calibrator-panel.open {
+  animation: calOpen 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes calOpen {
+  from { opacity:0; transform:translateY(-12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hazard-block:hover h2 { opacity: 0.85; }
+
+/* Calibrator container */
+.calibrator {
+  background: var(--ink);
+  border-left: 3px solid var(--ink);
+  border-right: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  margin: 0 -24px;
+  padding: 28px 24px 36px;
+  width: calc(100% + 48px);
+}
+
+/* Fast Track date display */
+.ft-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.calibrating-dot {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--lime);
+}
+.calibrating-dot.active { display: flex; }
+.cal-blink {
+  width: 5px; height: 5px;
+  background: var(--lime);
+  border-radius: 50%;
+  animation: calBlink 0.6s ease infinite alternate;
+}
+@keyframes calBlink { from { opacity:1; } to { opacity:0.1; } }
+
+.ft-date-wrap {
+  position: relative;
+  margin-bottom: 6px;
+  min-height: 68px;
+  overflow: hidden;
+}
+.ft-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(42px, 10vw, 64px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  background: var(--lime);
+  color: var(--ink);
+  display: inline-block;
+  padding: 4px 12px 6px;
+  transition: none;
+}
+.ft-date.flickering {
+  animation: ftFlicker 0.35s steps(1) both;
+}
+@keyframes ftFlicker {
+  0%   { opacity:1; }
+  10%  { opacity:0; }
+  20%  { opacity:1; }
+  30%  { opacity:0; }
+  45%  { opacity:1; }
+  55%  { opacity:0; }
+  70%  { opacity:1; }
+  80%  { opacity:0; }
+  90%  { opacity:1; }
+  100% { opacity:1; }
+}
+
+.ft-delta {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 28px;
+  min-height: 16px;
+}
+.ft-delta .saved { color: var(--lime); font-weight: 700; }
+
+/* Lever section label */
+.lever-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px;
+}
+
+/* SHAVE — Expense slider */
+.shave-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 2px solid rgba(255,255,255,0.2);
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.04);
+}
+.shave-step {
+  padding: 10px 6px;
+  text-align: center;
+  cursor: pointer;
+  border-right: 2px solid rgba(255,255,255,0.1);
+  transition: background 0.12s;
+  position: relative;
+}
+.shave-step:last-child { border-right: none; }
+.shave-step .ss-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-bottom: 3px;
+  transition: color 0.12s;
+}
+.shave-step .ss-pct {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  transition: color 0.12s;
+}
+.shave-step.active {
+  background: var(--lime);
+}
+.shave-step.active .ss-name { color: var(--ink); }
+.shave-step.active .ss-pct  { color: rgba(0,0,0,0.5); }
+
+.shave-desc {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+  min-height: 18px;
+}
+
+/* GRAFT — Income pill grid */
+.graft-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0;
+}
+.graft-pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: none;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.12s;
+  border-radius: 0;
+}
+.graft-pill:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
+.graft-pill.active {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
+}
+
+/* Calibrator summary stats */
+.cal-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px;
+}
+.cal-stat {
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.cal-stat .cs-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 5px;
+}
+.cal-stat .cs-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #fff;
+  line-height: 1;
+}
+.cal-stat .cs-val.pos { color: var(--lime); }
+.cal-stat .cs-val.neg { color: #ff7070; }
+
+
+  .debt-header { display: none; }
+  .debt-row { grid-template-columns: 1fr 1fr 40px; grid-template-rows: auto auto; }
+  .debt-row .debt-name { grid-column: 1 / -1; }
+  .two-col { grid-template-columns: 1fr; }
+  .r-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── TRAJECTORY STATE ── */
+.trajectory-block {
+  margin: 28px 0 0;
+  background: #111108;
+  border-radius: 16px;
+  color: #ffffff;
+}
+
+
+
+.traj-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px 12px;
+  background: #111108;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.traj-kicker {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.traj-title-inline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.traj-title-inline::before {
+  content: '·';
+  margin-right: 10px;
+  color: rgba(255,255,255,0.15);
+}
+
+/* State pill rail */
+.traj-rail {
+  display: flex;
+  gap: 0;
+  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: #111108;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.traj-rail::-webkit-scrollbar { display: none; }
+
+.traj-pill {
+  flex: 0 0 auto;
+  padding: 10px 12px 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  border-bottom: 3px solid rgba(255,255,255,0.06);
+  cursor: default;
+  line-height: 1.25;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.traj-pill.active {
+  color: var(--lime);
+  border-bottom-color: var(--lime);
+}
+
+.traj-pill.past {
+  color: rgba(255,255,255,0.18);
+  border-bottom-color: rgba(255,255,255,0.12);
+}
+
+/* State body */
+.traj-body {
+  padding: 20px 24px 28px;
+  background: #111108;
+}
+
+.traj-state-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(28px, 6vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  color: #e2f530;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.traj-tagline {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  font-style: italic;
+  display: block;
+  padding-bottom: 2px;
+}
+
+.traj-copy {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Action list */
+.traj-actions {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 16px;
+}
+
+.traj-actions-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.traj-action-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.traj-action-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.traj-action-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lime);
+  flex-shrink: 0;
+  position: relative;
+  top: -1px;
+  display: inline-block;
+}
+
+.traj-action-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.35;
+}
+
+/* ── WIZARD ── */
+.wizard-q {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+
+.wizard-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.wiz-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 10px 18px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.wiz-btn:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--lime);
+}
+
+.wiz-btn.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--lime);
+}
+
+.wizard-step {
+  animation: fadeIn 0.3s ease both;
+}
+
+/* ── SHARE HORIZON ────────────────────────────────────────────────── */
+
+/* Hidden off-screen capture target at Instagram 1:1 dimensions */
+
+.share-horizon-btn {
+  width: calc(100% + 48px);
+  margin-left: -24px;
+  padding: 20px;
+  background: var(--ink);
+  color: var(--lime);
+  border: none;
+  border-top: 3px solid var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: background 0.15s, color 0.15s;
+  border-radius: 0;
+  margin-top: 0;
+}
+.share-horizon-btn:hover {
+  background: var(--lime);
+  color: var(--ink);
+}
+.share-horizon-btn .sh-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Generating overlay */
+#gen-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17,17,8,0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+#gen-overlay.active { display: flex; }
+
+.gen-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+.gen-sub {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+.gen-bar {
+  width: 220px;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+}
+.gen-bar-fill {
+  height: 100%;
+  background: var(--lime);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── GENERATING OVERLAY ─────────────────────────────────────────── -->
+<div id="gen-overlay">
+  <div class="gen-label">Building your card...</div>
+  <div class="gen-sub" id="gen-sub-label">calculating</div>
+  <div class="gen-bar"><div class="gen-bar-fill" id="gen-bar-fill"></div></div>
+</div>
+
+
+<!-- Live Freedom Pulse — direct body child so fixed positioning is truly viewport-relative -->
+<div class="ticker-wrap" id="ticker-wrap">
+  <div class="ticker-header">
+    <div class="ticker-label">
+      <span class="ticker-live-dot"></span>
+      LIVE FREEDOM PULSE
+    </div>
+    <div class="ticker-scroll-area">
+      <div class="ticker-track" id="ticker-track"></div>
+    </div>
+  </div>
+</div>
+
+<div class="hero" id="input-screen">
+  <p class="kicker">freedomdate.io · v2</p>
+  <h1>When can you <span class="hl">actually</span> leave?</h1>
+  <p class="sub">Plug in your numbers. Get your exact freedom date.</p>
+
+  <!-- ── MODE SWITCHER ── -->
+  <div class="mode-switcher">
+    <button class="mode-tab active" id="tab-standard" onclick="setMode(false)">
+      Standard Scan
+      <span class="tab-sub">7 questions · 3 minutes</span>
+    </button>
+    <button class="mode-tab mode-tab-locked" id="tab-deep" tabindex="-1" onclick="return false;">
+      Deep Calibration
+      <span class="tab-sub">Coming soon</span>
+      <span class="soon-badge">COMING SOON</span>
+      <div class="soon-tooltip">
+        <div class="soon-tooltip-title">DEEP CALIBRATION</div>
+        <div class="soon-tooltip-divider"></div>
+        <div class="soon-tooltip-item">→ Individual debt tracking</div>
+        <div class="soon-tooltip-item">→ Minimum payment modelling</div>
+        <div class="soon-tooltip-item">→ Side income stacking</div>
+        <div class="soon-tooltip-item">→ Granular expense breakdown</div>
+        <div class="soon-tooltip-item">→ Month-by-month projection</div>
+
+      </div>
+    </button>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       STANDARD MODE
+  ═════════════════════════════════════════════════════ -->
+  <div id="mode-standard" class="mode-section">
+
+    <!-- 1. WHERE ARE YOU BASED? -->
+    <div class="std-field">
+      <label class="std-label">Where are you based?</label>
+      <select class="uw-select" id="uw-country">
+        <option value="">Select country...</option>
+        <optgroup label="SE Asia">
+          <option>🇹🇭 Thailand</option><option>🇻🇳 Vietnam</option><option>🇮🇩 Indonesia</option>
+          <option>🇰🇭 Cambodia</option><option>🇲🇾 Malaysia</option><option>🇵🇭 Philippines</option>
+          <option>🇸🇬 Singapore</option><option>🇨🇳 China</option><option>🇯🇵 Japan</option>
+          <option>🇰🇷 South Korea</option><option>🇹🇼 Taiwan</option><option>🇭🇰 Hong Kong</option>
+          <option>🇱🇦 Laos</option><option>🇲🇲 Myanmar</option>
+        </optgroup>
+        <optgroup label="Latin America">
+          <option>🇦🇷 Argentina</option><option>🇨🇴 Colombia</option><option>🇲🇽 Mexico</option>
+          <option>🇧🇷 Brazil</option><option>🇨🇱 Chile</option><option>🇵🇪 Peru</option>
+          <option>🇺🇾 Uruguay</option><option>🇪🇨 Ecuador</option>
+        </optgroup>
+        <optgroup label="Europe">
+          <option>🇵🇹 Portugal</option><option>🇪🇸 Spain</option><option>🇩🇪 Germany</option>
+          <option>🇬🇪 Georgia</option><option>🇨🇿 Czech Republic</option><option>🇵🇱 Poland</option>
+          <option>🇬🇷 Greece</option><option>🇮🇹 Italy</option><option>🇫🇷 France</option>
+          <option>🇳🇱 Netherlands</option><option>🇭🇺 Hungary</option><option>🇷🇴 Romania</option>
+          <option>🇧🇬 Bulgaria</option><option>🇭🇷 Croatia</option><option>🇷🇸 Serbia</option>
+          <option>🇲🇹 Malta</option><option>🇨🇾 Cyprus</option><option>🇦🇹 Austria</option>
+          <option>🇨🇭 Switzerland</option>
+        </optgroup>
+        <optgroup label="Middle East">
+          <option>🇦🇪 UAE</option><option>🇹🇷 Turkey</option><option>🇸🇦 Saudi Arabia</option>
+          <option>🇶🇦 Qatar</option><option>🇴🇲 Oman</option><option>🇧🇭 Bahrain</option>
+          <option>🇰🇼 Kuwait</option><option>🇯🇴 Jordan</option>
+        </optgroup>
+        <optgroup label="Africa">
+          <option>🇿🇦 South Africa</option><option>🇲🇦 Morocco</option><option>🇰🇪 Kenya</option>
+          <option>🇷🇼 Rwanda</option><option>🇳🇬 Nigeria</option><option>🇬🇭 Ghana</option><option>🇪🇬 Egypt</option>
+        </optgroup>
+        <optgroup label="South Asia">
+          <option>🇮🇳 India</option><option>🇱🇰 Sri Lanka</option><option>🇳🇵 Nepal</option><option>🇵🇰 Pakistan</option>
+        </optgroup>
+        <optgroup label="English-speaking">
+          <option>🇬🇧 United Kingdom</option><option>🇮🇪 Ireland</option><option>🇺🇸 United States</option>
+          <option>🇨🇦 Canada</option><option>🇦🇺 Australia</option><option>🇳🇿 New Zealand</option>
+        </optgroup>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <!-- 2. WHAT DO YOU DO? -->
+    <div class="std-field">
+      <label class="std-label">What do you do for money?</label>
+      <select class="uw-select" id="uw-situation">
+        <option value="">Select your sector...</option>
+        <optgroup label="Teaching">
+          <option>ESL / EFL Teacher</option><option>International School Teacher</option>
+          <option>University Lecturer</option><option>Online English Tutor</option>
+          <option>TEFL / CELTA Teacher</option><option>Private Tutor</option>
+        </optgroup>
+        <optgroup label="Remote work">
+          <option>Digital Nomad</option><option>Remote Worker (employed)</option>
+          <option>Freelancer</option><option>Contractor</option><option>Online Business Owner</option>
+          <option>Content Creator</option><option>Developer / Tech</option><option>Designer</option>
+          <option>Writer / Journalist</option><option>Marketer</option><option>Virtual Assistant</option>
+        </optgroup>
+        <optgroup label="Expat">
+          <option>Corporate Expat</option><option>NGO / Non-profit Worker</option>
+          <option>Military / Defence</option><option>Healthcare Worker</option>
+          <option>Engineer (overseas contract)</option><option>Au Pair</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option>Student / Studying abroad</option><option>Retired abroad</option>
+          <option>Backpacker / Long-term traveller</option><option>Between jobs</option><option>Other</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <!-- 3. FINANCIAL AUDIT WIZARD -->
+    <div class="std-field">
+      <label class="std-label audit-label">Financial Audit</label>
+
+      <!-- Wizard panel -->
+      <div id="uw-wizard-panel">
+
+        <!-- Progress bar -->
+        <div class="uw-progress">
+          <div class="uw-progress-fill" id="uw-progress-fill" style="width:0%"></div>
+        </div>
+
+        <!-- STEP 1: Total debt -->
+        <div class="uw-step" id="uw-1">
+          <div class="uw-q-num">01 / 05</div>
+          <h2 class="uw-q">How much do you owe in total?</h2>
+          <p class="uw-hint">Credit cards, car finance, personal loans — everything except property. Zero is fine.</p>
+          <div class="uw-input-wrap">
+            <input type="number" id="uw-debt" placeholder="0" inputmode="numeric" min="0">
+            <select id="uw-debtCurr"></select>
+          </div>
+          <button class="uw-next" onclick="uwGo(2)">Next →</button>
+        </div>
+
+        <!-- STEP 2: Destination + runway -->
+        <div class="uw-step" id="uw-2" style="display:none;">
+          <div class="uw-q-num">02 / 05</div>
+          <h2 class="uw-q">Where are you heading?</h2>
+          <p class="uw-hint">Pick your destination — we use the local cost of living to calculate your runway buffer.</p>
+          <div class="uw-pill-wrap" id="uw-regions">
+            <button class="uw-pill" onclick="uwRegion('SE Asia', this)">SE Asia</button>
+            <button class="uw-pill" onclick="uwRegion('Latin America', this)">Latin America</button>
+            <button class="uw-pill" onclick="uwRegion('Europe', this)">Europe</button>
+            <button class="uw-pill" onclick="uwRegion('Africa', this)">Africa</button>
+            <button class="uw-pill" onclick="uwRegion('Middle East', this)">Middle East</button>
+            <button class="uw-pill" onclick="uwRegion('South Asia', this)">South Asia</button>
+          </div>
+          <div id="uw-country-wrap" style="display:none; margin-top:14px;">
+            <select class="uw-select" id="uw-destination" onchange="uwData.destination=this.value; uwData.col=UW_DEST_COL[this.value]||1000; uwValidate(2);" style="margin-bottom:14px;">
+              <option value="">Select country...</option>
+            </select>
+            <p class="uw-hint" style="margin-bottom:10px;">How long until you need income after landing?</p>
+            <div class="uw-pill-wrap" id="uw-runway-pills">
+              <button class="uw-pill" onclick="uwRunway(1, this)">1 month</button>
+              <button class="uw-pill" onclick="uwRunway(3, this)">3 months</button>
+              <button class="uw-pill" onclick="uwRunway(6, this)">6 months</button>
+              <button class="uw-pill" onclick="uwRunway(12, this)">1 year</button>
+            </div>
+          </div>
+          <button class="uw-next" id="uw-next-2" onclick="uwGo(3)" disabled style="margin-top:14px;">Next →</button>
+          <button class="uw-back" onclick="uwGo(1)">← Back</button>
+        </div>
+
+        <!-- STEP 3: Income -->
+        <div class="uw-step" id="uw-3" style="display:none;">
+          <div class="uw-q-num">03 / 05</div>
+          <h2 class="uw-q">What's your monthly take-home?</h2>
+          <p class="uw-hint">After tax — every source of income combined.</p>
+          <div class="uw-input-wrap">
+            <input type="number" id="uw-income" placeholder="3000" inputmode="numeric" oninput="uwUpdateLive(); uwValidate(3)">
+            <select id="uw-incomeCurr" onchange="uwUpdateLive()"></select>
+          </div>
+          <button class="uw-next" id="uw-next-3" onclick="uwGo(4)" disabled>Next →</button>
+          <button class="uw-back" onclick="uwGo(2)">← Back</button>
+        </div>
+
+        <!-- STEP 4: Spend -->
+        <div class="uw-step" id="uw-4" style="display:none;">
+          <div class="uw-q-num">04 / 05</div>
+          <h2 class="uw-q">What do you spend each month?</h2>
+          <p class="uw-hint" style="margin-bottom:16px;">Two buckets — we'll show your surplus live.</p>
+
+          <div class="uw-spend-label">Fixed burn <span class="uw-spend-sub">Rent or mortgage payment, food, utilities, transport</span></div>
+          <div class="uw-input-wrap" style="margin-bottom:14px;">
+            <input type="number" id="uw-fixed" placeholder="1800" inputmode="numeric" oninput="uwUpdateLive()">
+            <select id="uw-fixedCurr" onchange="uwUpdateLive()"></select>
+          </div>
+
+          <div class="uw-spend-label">Lifestyle drain <span class="uw-spend-sub">Subscriptions, dining, incidentals</span></div>
+          <div class="uw-input-wrap" style="margin-bottom:16px;">
+            <input type="number" id="uw-lifestyle" placeholder="300" inputmode="numeric" oninput="uwUpdateLive()">
+            <select id="uw-lifestyleCurr" onchange="uwUpdateLive()"></select>
+          </div>
+
+          <!-- Live surplus ticker -->
+          <div class="uw-live">
+            <div class="uw-live-row">
+              <span class="uw-live-lbl">INFLOW</span>
+              <span class="uw-live-val" id="uwl-income">$0</span>
+            </div>
+            <div class="uw-live-row">
+              <span class="uw-live-lbl">FIXED BURN</span>
+              <span class="uw-live-val uw-neg" id="uwl-fixed">−$0</span>
+            </div>
+            <div class="uw-live-row">
+              <span class="uw-live-lbl">LIFESTYLE DRAIN</span>
+              <span class="uw-live-val uw-neg" id="uwl-lifestyle">−$0</span>
+            </div>
+            <div class="uw-live-divider"></div>
+            <div class="uw-live-row">
+              <span class="uw-live-lbl" style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:2px;">CURRENT SURPLUS</span>
+              <span class="uw-surplus" id="uwl-surplus">$0</span>
+            </div>
+          </div>
+
+          <button class="uw-next" id="uw-next-4" onclick="uwGo(5)">Next →</button>
+          <button class="uw-back" onclick="uwGo(3)">← Back</button>
+        </div>
+
+        <!-- STEP 5: Current savings -->
+        <div class="uw-step" id="uw-5" style="display:none;">
+          <div class="uw-q-num">05 / 05</div>
+          <h2 class="uw-q">What do you have saved right now?</h2>
+          <p class="uw-hint">Cash in your account today. This moves your freedom date forward.</p>
+          <div class="uw-input-wrap">
+            <input type="number" id="uw-savings" placeholder="0" inputmode="numeric" min="0">
+            <select id="uw-savingsCurr"></select>
+          </div>
+          <button class="uw-lock" onclick="uwLock()">[ LOCK IN MY NUMBERS ]</button>
+          <button class="uw-back" onclick="uwGo(4)">← Back</button>
+        </div>
+
+      </div><!-- /uw-wizard-panel -->
+
+      <!-- Summary card — shown after lock -->
+      <div class="uw-summary" id="uw-summary" style="display:none;">
+        <div class="uw-sum-phase-label">WHAT DO YOU OWE?</div>
+        <div class="uw-sum-grid">
+          <div class="uw-sum-stat">
+            <span class="uw-ss-lbl">Total debt</span>
+            <span class="uw-ss-val" id="uss-debt">—</span>
+          </div>
+          <div class="uw-sum-stat">
+            <span class="uw-ss-lbl">Runway buffer</span>
+            <span class="uw-ss-val" id="uss-runway">—</span>
+          </div>
+          <div class="uw-sum-stat uw-sum-full">
+            <span class="uw-ss-lbl">Total Extraction Cost</span>
+            <span class="uw-ss-val uw-ss-lime" id="uss-extraction">—</span>
+          </div>
+        </div>
+        <div class="uw-sum-divider"></div>
+        <div class="uw-sum-phase-label">WHAT'S YOUR RATE?</div>
+        <div class="uw-sum-grid">
+          <div class="uw-sum-stat">
+            <span class="uw-ss-lbl">Monthly income</span>
+            <span class="uw-ss-val" id="uss-income">—</span>
+          </div>
+          <div class="uw-sum-stat">
+            <span class="uw-ss-lbl">Monthly spend</span>
+            <span class="uw-ss-val" id="uss-spend">—</span>
+          </div>
+          <div class="uw-sum-stat">
+            <span class="uw-ss-lbl">Current savings</span>
+            <span class="uw-ss-val" id="uss-savings">—</span>
+          </div>
+          <div class="uw-sum-stat">
+            <span class="uw-ss-lbl">Monthly surplus</span>
+            <span class="uw-ss-val uw-ss-lime" id="uss-surplus">—</span>
+          </div>
+        </div>
+        <button class="uw-edit-btn" onclick="uwRestart()">← Edit answers</button>
+
+        <!-- Hidden inputs consumed by gatherInputs() -->
+        <input type="hidden" id="std-extraction" value="0">
+        <input type="hidden" id="std-savings" value="0">
+        <select id="std-extractionCurr" style="display:none;"></select>
+        <select id="std-savingsCurr" style="display:none;"></select>
+        <input type="hidden" id="std-destination-val" value="">
+        <input type="hidden" id="std-situation-val" value="">
+      </div>
+
+    </div><!-- /Financial Audit std-field -->
+
+    <!-- 4. TARGET DESTINATION — locked in from wizard -->
+    <div class="std-field" id="std-dest-field">
+      <label class="std-label">Target Destination</label>
+      <div id="std-dest-locked" style="display:none; padding:16px 18px; border:3px solid var(--lime-dark); background:var(--card); display:none; align-items:center; justify-content:space-between;">
+        <div>
+          <span style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);display:block;margin-bottom:4px;">CONFIRMED DESTINATION</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--ink);" id="std-dest-locked-text">—</span>
+        </div>
+        <button onclick="uwRestart()" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;background:none;border:none;color:var(--muted);cursor:pointer;text-decoration:underline;flex-shrink:0;">Change</button>
+      </div>
+      <div id="std-dest-empty" style="padding:14px 18px;border:3px dashed var(--border);font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-align:center;">
+        COMPLETE THE FINANCIAL AUDIT ABOVE ↑
+      </div>
+    </div>
+
+  </div><!-- /mode-standard -->
+
+
+  <!-- ════════════════════════════════════════════════════
+       DEEP CALIBRATION MODE — full granular audit
+  ═════════════════════════════════════════════════════ -->
+  <div id="mode-deep" class="mode-section" style="display:none;">
+
+    <div class="sec-label">Income & expenses</div>
+    <div class="two-col" style="margin-bottom:8px;">
+      <div class="field">
+        <label>Monthly take-home</label>
+        <div class="input-wrap">
+          <input type="number" id="income" placeholder="3000" inputmode="numeric">
+          <select id="incomeCurr"></select>
+        </div>
+        <span class="field-hint">After-tax salary — what actually lands in your bank.</span>
+      </div>
+      <div class="field">
+        <label>Side income</label>
+        <div class="input-wrap">
+          <input type="number" id="side" placeholder="400" inputmode="numeric">
+          <select id="sideCurr"></select>
+        </div>
+        <span class="field-hint">Tutoring, freelance, Etsy — anything extra. 0 if none.</span>
+      </div>
+      <div class="field">
+        <div class="tooltip-wrap">
+          <label style="display:inline;">Monthly expenses</label>
+          <span class="tooltip-icon" tabindex="0">?</span>
+          <div class="tooltip-bubble">Earn $2,000 · spend $1,500 on life = <strong style="color:var(--lime);">$500 left over</strong>. Enter the $1,500 here. Don't include debt repayments.</div>
+        </div>
+        <div class="input-wrap" style="margin-top:5px;">
+          <input type="number" id="expenses" placeholder="1500" inputmode="numeric">
+          <select id="expCurr"></select>
+        </div>
+        <span class="field-hint">Rent, food, transport, subscriptions — not debt repayments.</span>
+      </div>
+      <div class="field">
+        <label>Current bank balance</label>
+        <div class="input-wrap">
+          <input type="number" id="savings" placeholder="2000" inputmode="numeric">
+          <select id="savCurr"></select>
+        </div>
+        <span class="field-hint">Cash sitting in your account right now.</span>
+      </div>
+    </div>
+
+    <!-- Debt list -->
+    <div class="debt-section">
+      <div class="sec-label">Your debts</div>
+      <p class="field-hint" style="margin-bottom:14px; margin-top:-6px;">Credit cards, loans, car finance. Add each separately. Don't include rent.</p>
+      <div class="debt-header">
+        <span class="debt-col-label">Name</span>
+        <span class="debt-col-label">Balance</span>
+        <span class="debt-col-label">Monthly min.</span>
+        <span class="debt-col-label">Currency</span>
+        <span></span>
+      </div>
+      <div class="debt-rows" id="debtRows"></div>
+      <button class="add-debt-btn" onclick="addDebt()">+ Add a debt</button>
+    </div>
+
+    <!-- Exit fund target -->
+    <div class="exit-section">
+      <div class="sec-label">Exit fund target</div>
+      <div class="field">
+        <div class="tooltip-wrap">
+          <label style="display:inline;">Safety net cash</label>
+          <span class="tooltip-icon" tabindex="0">?</span>
+          <div class="tooltip-bubble">How much cash do you need saved <em>beyond</em> clearing your debts before you feel safe to leave? Typically 3–6 months of destination costs.</div>
+        </div>
+        <div class="input-wrap" style="margin-top:5px;">
+          <input type="number" id="target" placeholder="8000" inputmode="numeric">
+          <select id="targetCurr"></select>
+        </div>
+        <span id="wizard-trigger" onclick="openWizard()" style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--lime-dark);letter-spacing:0.5px;margin-top:6px;display:inline-block;cursor:pointer;text-decoration:underline;text-underline-offset:3px;">Not sure? Help me calculate it →</span>
+      </div>
+
+      <div id="wizard" style="display:none; margin-top:20px;">
+        <div class="wizard-step" id="ws-1">
+          <p class="wizard-q">Where are you heading?</p>
+          <div class="wizard-options">
+            <button class="wiz-btn" onclick="pickRegion('SE Asia')">SE Asia</button>
+            <button class="wiz-btn" onclick="pickRegion('Latin America')">Latin America</button>
+            <button class="wiz-btn" onclick="pickRegion('Europe')">Europe</button>
+            <button class="wiz-btn" onclick="pickRegion('Africa')">Africa</button>
+            <button class="wiz-btn" onclick="pickRegion('Middle East')">Middle East</button>
+          </div>
+        </div>
+        <div class="wizard-step" id="ws-2" style="display:none;">
+          <p class="wizard-q">Which country?</p>
+          <div class="wizard-options" id="country-options"></div>
+        </div>
+        <div class="wizard-step" id="ws-3" style="display:none;">
+          <p class="wizard-q">How long before you need income again?</p>
+          <div class="wizard-options">
+            <button class="wiz-btn" onclick="pickDuration(1)">1 month</button>
+            <button class="wiz-btn" onclick="pickDuration(3)">3 months</button>
+            <button class="wiz-btn" onclick="pickDuration(6)">6 months</button>
+            <button class="wiz-btn" onclick="pickDuration(12)">1 year</button>
+          </div>
+        </div>
+        <div class="wizard-step" id="ws-4" style="display:none;">
+          <p class="wizard-q">How do you handle uncertainty?</p>
+          <div class="wizard-options">
+            <button class="wiz-btn" onclick="pickRisk(1.0)">I will figure it out</button>
+            <button class="wiz-btn" onclick="pickRisk(1.25)">Some cushion</button>
+            <button class="wiz-btn" onclick="pickRisk(1.5)">I need to feel secure</button>
+          </div>
+        </div>
+        <div id="wizard-result" style="display:none; margin-top:16px; padding:16px; background:var(--card); border:1.5px solid var(--lime); border-radius:8px;">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px;">Suggested exit fund</p>
+          <p id="wizard-amount" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:6px;"></p>
+          <p id="wizard-breakdown" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:12px;"></p>
+          <button onclick="applyWizard()" style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;letter-spacing:1px;text-transform:uppercase;background:var(--ink);color:var(--lime);border:none;border-radius:6px;padding:10px 20px;cursor:pointer;">Use this number →</button>
+          <button onclick="resetWizard()" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;background:none;border:none;color:var(--muted);cursor:pointer;margin-left:12px;text-decoration:underline;">Start over</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- About you — deep only -->
+    <div class="exit-section">
+      <div class="sec-label">About you</div>
+      <div class="field">
+        <label>Current location</label>
+        <select id="userCountry" class="select-field">
+          <option value="">Select country...</option>
+          <optgroup label="SE Asia">
+            <option>🇹🇭 Thailand</option><option>🇻🇳 Vietnam</option><option>🇮🇩 Indonesia</option>
+            <option>🇰🇭 Cambodia</option><option>🇲🇾 Malaysia</option><option>🇵🇭 Philippines</option>
+            <option>🇸🇬 Singapore</option><option>🇨🇳 China</option><option>🇯🇵 Japan</option>
+            <option>🇰🇷 South Korea</option><option>🇹🇼 Taiwan</option><option>🇭🇰 Hong Kong</option>
+            <option>🇱🇦 Laos</option><option>🇲🇲 Myanmar</option><option>🇧🇳 Brunei</option>
+          </optgroup>
+          <optgroup label="Latin America">
+            <option>🇦🇷 Argentina</option><option>🇨🇴 Colombia</option><option>🇲🇽 Mexico</option>
+            <option>🇧🇷 Brazil</option><option>🇨🇱 Chile</option><option>🇵🇪 Peru</option>
+            <option>🇺🇾 Uruguay</option><option>🇪🇨 Ecuador</option><option>🇧🇴 Bolivia</option><option>🇵🇾 Paraguay</option>
+          </optgroup>
+          <optgroup label="Europe">
+            <option>🇵🇹 Portugal</option><option>🇪🇸 Spain</option><option>🇩🇪 Germany</option>
+            <option>🇬🇪 Georgia</option><option>🇨🇿 Czech Republic</option><option>🇵🇱 Poland</option>
+            <option>🇬🇷 Greece</option><option>🇮🇹 Italy</option><option>🇫🇷 France</option>
+            <option>🇳🇱 Netherlands</option><option>🇭🇺 Hungary</option><option>🇷🇴 Romania</option>
+            <option>🇧🇬 Bulgaria</option><option>🇭🇷 Croatia</option><option>🇷🇸 Serbia</option>
+            <option>🇸🇰 Slovakia</option><option>🇲🇹 Malta</option><option>🇨🇾 Cyprus</option>
+            <option>🇦🇹 Austria</option><option>🇨🇭 Switzerland</option><option>🇦🇲 Armenia</option>
+            <option>🇦🇿 Azerbaijan</option><option>🇺🇿 Uzbekistan</option><option>🇲🇳 Mongolia</option>
+          </optgroup>
+          <optgroup label="Middle East">
+            <option>🇦🇪 UAE</option><option>🇹🇷 Turkey</option><option>🇸🇦 Saudi Arabia</option>
+            <option>🇶🇦 Qatar</option><option>🇴🇲 Oman</option><option>🇧🇭 Bahrain</option>
+            <option>🇰🇼 Kuwait</option><option>🇯🇴 Jordan</option><option>🇮🇱 Israel</option><option>🇱🇧 Lebanon</option>
+          </optgroup>
+          <optgroup label="Africa">
+            <option>🇿🇦 South Africa</option><option>🇲🇦 Morocco</option><option>🇰🇪 Kenya</option>
+            <option>🇷🇼 Rwanda</option><option>🇹🇿 Tanzania</option><option>🇺🇬 Uganda</option>
+            <option>🇳🇬 Nigeria</option><option>🇬🇭 Ghana</option><option>🇪🇬 Egypt</option>
+          </optgroup>
+          <optgroup label="South Asia">
+            <option>🇮🇳 India</option><option>🇱🇰 Sri Lanka</option><option>🇳🇵 Nepal</option>
+            <option>🇵🇰 Pakistan</option><option>🇧🇩 Bangladesh</option>
+          </optgroup>
+          <optgroup label="English-speaking">
+            <option>🇬🇧 United Kingdom</option><option>🇮🇪 Ireland</option><option>🇺🇸 United States</option>
+            <option>🇨🇦 Canada</option><option>🇦🇺 Australia</option><option>🇳🇿 New Zealand</option>
+          </optgroup>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field" style="margin-top:14px;">
+        <label>Target destination</label>
+        <select id="targetDestination" class="select-field">
+          <option value="">Select destination...</option>
+          <optgroup label="Top 10 Hubs">
+            <option>🇹🇭 Thailand</option><option>🇻🇳 Vietnam</option><option>🇮🇩 Indonesia (Bali)</option>
+            <option>🇵🇹 Portugal</option><option>🇪🇸 Spain</option><option>🇲🇽 Mexico</option>
+            <option>🇬🇪 Georgia</option><option>🇨🇴 Colombia</option><option>🇲🇾 Malaysia</option><option>🇰🇭 Cambodia</option>
+          </optgroup>
+          <optgroup label="SE Asia">
+            <option>🇵🇭 Philippines</option><option>🇸🇬 Singapore</option><option>🇯🇵 Japan</option>
+            <option>🇰🇷 South Korea</option><option>🇹🇼 Taiwan</option><option>🇱🇦 Laos</option><option>🇲🇲 Myanmar</option>
+          </optgroup>
+          <optgroup label="Latin America">
+            <option>🇦🇷 Argentina</option><option>🇧🇷 Brazil</option><option>🇨🇱 Chile</option>
+            <option>🇵🇪 Peru</option><option>🇺🇾 Uruguay</option><option>🇪🇨 Ecuador</option>
+          </optgroup>
+          <optgroup label="Europe">
+            <option>🇨🇿 Czech Republic</option><option>🇵🇱 Poland</option><option>🇬🇷 Greece</option>
+            <option>🇮🇹 Italy</option><option>🇭🇺 Hungary</option><option>🇷🇴 Romania</option>
+            <option>🇧🇬 Bulgaria</option><option>🇭🇷 Croatia</option><option>🇷🇸 Serbia</option>
+            <option>🇲🇹 Malta</option><option>🇨🇾 Cyprus</option>
+          </optgroup>
+          <optgroup label="Middle East & Africa">
+            <option>🇦🇪 UAE</option><option>🇹🇷 Turkey</option><option>🇲🇦 Morocco</option>
+            <option>🇿🇦 South Africa</option><option>🇰🇪 Kenya</option><option>🇷🇼 Rwanda</option>
+          </optgroup>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field" style="margin-top:14px;">
+        <label>Career Sector</label>
+        <select id="userSituation" class="select-field">
+          <option value="">Select situation...</option>
+          <optgroup label="Teaching">
+            <option>ESL / EFL Teacher</option><option>International School Teacher</option>
+            <option>University Lecturer</option><option>Online English Tutor</option>
+            <option>TEFL / CELTA Teacher</option><option>Special Education Teacher</option><option>Private Tutor</option>
+          </optgroup>
+          <optgroup label="Remote work">
+            <option>Digital Nomad</option><option>Remote Worker (employed)</option>
+            <option>Freelancer</option><option>Contractor</option><option>Online Business Owner</option>
+            <option>Content Creator</option><option>Developer / Tech</option><option>Designer</option>
+            <option>Writer / Journalist</option><option>Marketer</option><option>Virtual Assistant</option>
+          </optgroup>
+          <optgroup label="Expat">
+            <option>Corporate Expat</option><option>NGO / Non-profit Worker</option>
+            <option>Diplomat / Government</option><option>Military / Defence</option>
+            <option>Healthcare Worker</option><option>Engineer (overseas contract)</option><option>Au Pair</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option>Student / Studying abroad</option><option>Retired abroad</option>
+            <option>Backpacker / Long-term traveller</option><option>Between jobs</option><option>Other</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:12px; margin-bottom:4px;">
+      <label class="field" style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Current monthly cost of living</label>
+      <div class="input-wrap" style="margin-top:6px;">
+        <input type="number" id="costOfLiving" placeholder="e.g. 1200" inputmode="numeric" min="0">
+        <select id="colCurr"></select>
+      </div>
+      <span class="field-hint">Rent, food, transport — everything. Your real number.</span>
+    </div>
+
+  </div><!-- /mode-deep -->
+
+  <button class="cta-btn" onclick="calculate()">Find my freedom date →</button>
+  <p class="no-bs">No signup. No account. No BS.</p>
+
+
+
+</div>
+
+
+<div id="result-screen">
+
+  <div style="padding: 32px 0 20px;">
+    <p class="kicker">freedomdate.io · v2</p>
+    <h1>When can you <span class="hl" onclick="reset()" style="cursor:pointer;" title="Back to calculator">actually</span> leave?</h1>
+  </div>
+
+  <div class="result-hero">
+    <div class="baseline-label">Baseline horizon</div>
+    <div class="r-label">Your freedom date</div>
+    <div class="r-date" id="r-date">—</div>
+    <div class="r-months" id="r-months"></div>
+
+    <div class="r-stats">
+      <div class="rstat">
+        <div class="rs-label">Monthly gap</div>
+        <div class="rs-val" id="r-surplus">—</div>
+      </div>
+      <div class="rstat">
+        <div class="rs-label">Total debt</div>
+        <div class="rs-val" id="r-totaldebt">—</div>
+      </div>
+      <div class="rstat">
+        <div class="rs-label">Months out</div>
+        <div class="rs-val" id="r-monthsout">—</div>
+      </div>
+      <div class="rstat" style="grid-column:1/-1;">
+        <div class="rs-label">Debt zero</div>
+        <div class="rs-val dz" id="r-debtzero" style="font-size:13px;letter-spacing:1px;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE HORIZON — primary CTA, lives directly below the snapshot -->
+  <button class="share-horizon-btn" onclick="shareHorizon()">
+    <span class="sh-icon">⬡</span> Share freedom date
+  </button>
+
+
+
+  <!-- ── TRAJECTORY STATE ──────────────────────────────────────────────── -->
+  <div class="trajectory-block" id="trajectory-block">
+
+    <div class="traj-top">
+      <span class="traj-kicker">Diagnostic</span>
+      <span class="traj-title-inline">Your trajectory state</span>
+    </div>
+
+    <div class="traj-rail" id="traj-rail">
+      <div class="traj-pill" data-state="baseline">Baseline<br>Reset</div>
+      <div class="traj-pill" data-state="entanglement">Stable<br>Entanglement</div>
+      <div class="traj-pill" data-state="sedation">Comfort<br>Sedation</div>
+      <div class="traj-pill" data-state="drift">Slow<br>Drift</div>
+      <div class="traj-pill" data-state="extraction">Active<br>Extraction</div>
+      <div class="traj-pill" data-state="velocity">Velocity<br>Phase</div>
+    </div>
+
+    <div class="traj-body" id="traj-body">
+      <div class="traj-state-name" id="traj-state-name">—</div>
+      <div class="traj-tagline" id="traj-tagline"></div>
+      <div class="traj-copy" id="traj-copy"></div>
+      <div class="traj-actions">
+        <div class="traj-actions-label">What needs to happen</div>
+        <div id="traj-action-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HORIZON CALIBRATOR — SECOND FOLD ─────────────────────────────── -->
+  <div class="hazard-block" id="hazard-toggle" onclick="toggleCalibrator()" style="cursor:pointer;">
+    <div class="hazard-stripes"></div>
+    <div class="hazard-stripes hazard-stripes-bottom"></div>
+    <h2>LET'S FAST TRACK YOUR EXIT <span id="hazard-arrow" style="font-size:20px;vertical-align:middle;margin-left:8px;">↓</span></h2>
+    <p>The standard math takes too long. Deploy tactical levers to force an earlier extraction.</p>
+  </div>
+
+  <div class="calibrator" id="calibrator-panel" style="display:none;">
+
+    <!-- ── FAST-TRACK WIZARD (Standard Mode only — collects real figures) ── -->
+    <div id="ftw-panel" style="display:none;">
+      <div class="ft-label" style="margin-bottom:18px;">
+        Quick audit — 3 questions
+      </div>
+
+      <div class="ftw-step" id="ftw-1">
+        <p class="ftw-q">What's your monthly take-home pay?</p>
+        <p class="ftw-hint">After tax, the number that lands in your bank.</p>
+        <div class="ftw-input-row">
+          <div class="std-input-wrap" style="flex:1;">
+            <input type="number" id="ftw-income" placeholder="3000" inputmode="numeric">
+            <select id="ftw-incomeCurr"></select>
+          </div>
+        </div>
+        <button class="ftw-next" onclick="ftwNext(2)">Next →</button>
+      </div>
+
+      <div class="ftw-step" id="ftw-2" style="display:none;">
+        <p class="ftw-q">What do you spend each month?</p>
+        <p class="ftw-hint">Rent, food, transport, subscriptions — everything except debt repayments.</p>
+        <div class="ftw-input-row">
+          <div class="std-input-wrap" style="flex:1;">
+            <input type="number" id="ftw-expenses" placeholder="2000" inputmode="numeric">
+            <select id="ftw-expCurr"></select>
+          </div>
+        </div>
+        <button class="ftw-next" onclick="ftwNext(3)">Next →</button>
+        <button class="ftw-back" onclick="ftwBack(1)">← Back</button>
+      </div>
+
+      <div class="ftw-step" id="ftw-3" style="display:none;">
+        <p class="ftw-q">How much do you have in savings right now?</p>
+        <p class="ftw-hint">Cash sitting in your account today.</p>
+        <div class="ftw-input-row">
+          <div class="std-input-wrap" style="flex:1;">
+            <input type="number" id="ftw-savings" placeholder="2000" inputmode="numeric">
+            <select id="ftw-savCurr"></select>
+          </div>
+        </div>
+        <button class="ftw-next" onclick="ftwApply()">Calculate fast track →</button>
+        <button class="ftw-back" onclick="ftwBack(2)">← Back</button>
+      </div>
+
+    </div><!-- /ftw-panel -->
+
+    <!-- ── THE LEVERS (always shown in Deep Mode, shown after wizard in Standard) ── -->
+    <div id="cal-levers" style="display:none;">
+
+      <div class="ft-label">
+        Fast track date
+        <span class="calibrating-dot" id="cal-indicator">
+          <span class="cal-blink"></span>CALIBRATING...
+        </span>
+      </div>
+      <div class="ft-date-wrap">
+        <div class="ft-date" id="ft-date">—</div>
+      </div>
+      <div class="ft-delta" id="ft-delta"></div>
+
+      <!-- THE SHAVE -->
+      <div class="lever-label">The Shave — Cut expenses</div>
+      <div class="shave-steps" id="shave-steps">
+        <div class="shave-step active" data-idx="0" onclick="setShave(0)">
+          <span class="ss-name">Standard</span>
+          <span class="ss-pct">−0%</span>
+        </div>
+        <div class="shave-step" data-idx="1" onclick="setShave(1)">
+          <span class="ss-name">Lean</span>
+          <span class="ss-pct">−10%</span>
+        </div>
+        <div class="shave-step" data-idx="2" onclick="setShave(2)">
+          <span class="ss-name">Blackout</span>
+          <span class="ss-pct">−25%</span>
+        </div>
+        <div class="shave-step" data-idx="3" onclick="setShave(3)">
+          <span class="ss-name">War Room</span>
+          <span class="ss-pct">−40%</span>
+        </div>
+      </div>
+      <div class="shave-desc" id="shave-desc">Your current lifestyle, unchanged.</div>
+
+      <!-- THE GRAFT -->
+      <div class="lever-label" style="margin-top:24px;">The Graft — Stack income <span id="graft-category" style="color:rgba(255,255,255,0.2);font-size:9px;letter-spacing:2px;margin-left:6px;"></span></div>
+      <div class="graft-grid" id="graft-grid"></div>
+
+      <!-- Calibrated stats -->
+      <div class="cal-stats">
+        <div class="cal-stat">
+          <div class="cs-label" id="cs-label-gap">Adjusted gap /mo</div>
+          <div class="cs-val pos" id="cal-gap">—</div>
+        </div>
+        <div class="cal-stat">
+          <div class="cs-label">Months saved</div>
+          <div class="cs-val pos" id="cal-saved">—</div>
+        </div>
+        <div class="cal-stat">
+          <div class="cs-label" id="cs-label-exp">New expenses</div>
+          <div class="cs-val" id="cal-exp">—</div>
+        </div>
+        <div class="cal-stat">
+          <div class="cs-label" id="cs-label-inc">Boosted income</div>
+          <div class="cs-val" id="cal-inc">—</div>
+        </div>
+      </div>
+
+      <!-- Debt breakdown -->
+      <div id="r-breakdown" style="margin-top:20px;"></div>
+
+    </div><!-- /cal-levers -->
+
+  </div>
+  <!-- ── END CALIBRATOR ─────────────────────────────────────────────────── -->
+
+  <button class="reset-btn" onclick="reset()" style="margin-top:28px;">← Recalculate</button>
+  <p class="built-by" style="margin-bottom:28px;">Built by <a href="#">@deonvisser</a> · freedomdate.io</p>
+
+  
+
+
+</div>
+
+<script>
+// ── CURRENCIES ──────────────────────────────────────────────────────────────
+const CURRENCIES = [
+  ['USD','$'],['EUR','€'],['GBP','£'],['ZAR','R'],['THB','฿'],
+  ['ARS','$'],['AUD','A$'],['CAD','C$'],['SGD','S$'],['MYR','RM'],
+  ['NZD','NZ$'],['AED','د.إ'],['JPY','¥'],['KRW','₩'],['PHP','₱'],
+  ['VND','₫'],['IDR','Rp'],['MXN','$'],['BRL','R$'],['CLP','$'],
+  ['COP','$'],['PEN','S/'],['UYU','$U'],['HKD','HK$'],['CNY','¥'],
+];
+
+const FX = {
+  USD:1, EUR:0.92, GBP:0.79, ZAR:18.5, THB:35.5, ARS:900,
+  AUD:1.52, CAD:1.36, SGD:1.34, MYR:4.7, NZD:1.63, AED:3.67,
+  JPY:155, KRW:1340, PHP:57, VND:24500, IDR:15800, MXN:17.2,
+  BRL:5.1, CLP:945, COP:3900, PEN:3.75, UYU:39, HKD:7.82, CNY:7.25,
+};
+
+const MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+
+function currOpts(selected='USD') {
+  return CURRENCIES.map(([c,s]) =>
+    `<option value="${c}" ${c===selected?'selected':''}>${c}</option>`
+  ).join('');
+}
+
+function populateSelects() {
+  ['incomeCurr','sideCurr','expCurr','savCurr','targetCurr','colCurr',
+   'std-extractionCurr','std-savingsCurr','xw-debtCurr',
+   'ftw-incomeCurr','ftw-expCurr','ftw-savCurr',
+   'sw-incomeCurr','sw-fixedCurr','sw-lifestyleCurr',
+   'uw-savingsCurr'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = currOpts('USD');
+  });
+}
+
+function toUSD(n, cur) { return n / (FX[cur] || 1); }
+
+function fmtUSD(n, showSign=false) {
+  const s = showSign && n > 0 ? '+' : '';
+  if (Math.abs(n) >= 1000000) return s + '$' + (n/1000000).toFixed(1) + 'M';
+  if (Math.abs(n) >= 1000) return s + '$' + (n/1000).toFixed(1) + 'K';
+  return s + '$' + Math.round(n).toLocaleString();
+}
+
+// ── DEBT ROWS ────────────────────────────────────────────────────────────────
+let debtId = 0;
+const PRESETS = [
+  ['Credit card','USD'],['Home loan / bond','USD'],
+];
+
+function addDebt(name='', cur='USD') {
+  const id = debtId++;
+  const row = document.createElement('div');
+  row.className = 'debt-row';
+  row.id = `dr-${id}`;
+  row.innerHTML = `
+    <div class="debt-row-top">
+      <input class="debt-name" type="text" placeholder="e.g. Thai credit card" value="${name}" style="width:100%;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;border:none;outline:none;background:none;color:var(--ink);">
+    </div>
+    <div class="debt-row-bottom">
+      <div class="field">
+        <label style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Balance</label>
+        <input class="debt-bal" type="number" placeholder="0" inputmode="numeric" min="0" style="width:100%;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;border:none;outline:none;background:none;color:var(--ink);">
+      </div>
+      <div class="field">
+        <label style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Monthly min.</label>
+        <input class="debt-min" type="number" placeholder="0" inputmode="numeric" min="0" style="width:100%;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;border:none;outline:none;background:none;color:var(--ink);">
+      </div>
+      <div class="field">
+        <label style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Currency</label>
+        <select class="debt-cur" style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;outline:none;background:none;color:var(--ink);width:100%;cursor:pointer;appearance:none;">${currOpts(cur)}</select>
+      </div>
+      <button class="del-btn" onclick="document.getElementById('dr-${id}').remove()" style="align-self:flex-end;">×</button>
+    </div>
+  `;
+  document.getElementById('debtRows').appendChild(row);
+}
+
+// ── LIVE TICKER ──────────────────────────────────────────────────────────────
+
+function buildTicker() {
+  const track = document.getElementById('ticker-track');
+  const wrap  = document.getElementById('ticker-wrap');
+  if (!track || !wrap) return;
+
+  const items = [...PULSE_SEEDS, ...PULSE_SEEDS];
+  track.innerHTML = items.map(item => `
+    <div class="ticker-item">
+      <span class="ti-flag">${flagEmoji(item.flag)}</span>
+      <span>${item.from}</span>
+      <span class="ti-dot"></span>
+      <span>${item.type}</span>
+      <span class="ti-dot"></span>
+      <span class="ti-date">${item.date}</span>
+    </div>
+  `).join('');
+
+  wrap.classList.add('visible');
+  document.getElementById('result-screen').classList.add('ticker-visible');
+
+  // Force true left edge — counteract body centering
+  function positionTicker() {
+    const bodyRect = document.body.getBoundingClientRect();
+    wrap.style.left = '0px';
+    wrap.style.right = '0px';
+    wrap.style.width = '100vw';
+    wrap.style.marginLeft = '0';
+  }
+  positionTicker();
+  window.addEventListener('resize', positionTicker);
+}
+
+function hideTicker() {
+  const wrap = document.getElementById('ticker-wrap');
+  if (wrap) wrap.classList.remove('visible');
+  const rs = document.getElementById('result-screen');
+  if (rs) rs.classList.remove('ticker-visible');
+}
+
+
+
+const FLAG_EMOJI = {
+  'za':'🇿🇦','th':'🇹🇭','gb':'🇬🇧','pt':'🇵🇹','au':'🇦🇺','de':'🇩🇪','jp':'🇯🇵',
+  'br':'🇧🇷','kr':'🇰🇷','ar':'🇦🇷','sg':'🇸🇬','my':'🇲🇾','ca':'🇨🇦','id':'🇮🇩',
+  'nz':'🇳🇿','us':'🇺🇸','vn':'🇻🇳','kh':'🇰🇭','ph':'🇵🇭','cn':'🇨🇳',
+  'tw':'🇹🇼','hk':'🇭🇰','la':'🇱🇦','mm':'🇲🇲','co':'🇨🇴','mx':'🇲🇽',
+  'cl':'🇨🇱','pe':'🇵🇪','uy':'🇺🇾','ec':'🇪🇨','es':'🇪🇸',
+  'ge':'🇬🇪','cz':'🇨🇿','pl':'🇵🇱','gr':'🇬🇷','it':'🇮🇹','fr':'🇫🇷','nl':'🇳🇱',
+  'hu':'🇭🇺','ro':'🇷🇴','bg':'🇧🇬','hr':'🇭🇷','rs':'🇷🇸','mt':'🇲🇹',
+  'cy':'🇨🇾','at':'🇦🇹','ch':'🇨🇭','ae':'🇦🇪','tr':'🇹🇷','ma':'🇲🇦',
+  'ke':'🇰🇪','rw':'🇷🇼','ng':'🇳🇬','gh':'🇬🇭','eg':'🇪🇬',
+  'in':'🇮🇳','lk':'🇱🇰','np':'🇳🇵','ie':'🇮🇪',
+};
+
+function flagEmoji(code) { return FLAG_EMOJI[code] || '🌍'; }
+
+const PULSE_SEEDS = [
+  { flag:'za', from:'South Africa',  type:'ESL Teacher',      date:'AUGUST 2027'    },
+  { flag:'gb', from:'United Kingdom',type:'Digital Nomad',    date:'JUNE 2026'      },
+  { flag:'au', from:'Australia',     type:'Remote Worker',    date:'OCTOBER 2027'   },
+  { flag:'de', from:'Germany',       type:'Freelancer',       date:'MAY 2028'       },
+  { flag:'jp', from:'Japan',         type:'ESL Teacher',      date:'SEPTEMBER 2027' },
+  { flag:'kr', from:'South Korea',   type:'ESL Teacher',      date:'FEBRUARY 2027'  },
+  { flag:'ca', from:'Canada',        type:'Remote Worker',    date:'MARCH 2029'     },
+  { flag:'us', from:'United States', type:'Digital Nomad',    date:'NOVEMBER 2027'  },
+  { flag:'sg', from:'Singapore',     type:'Finance Expat',    date:'APRIL 2026'     },
+  { flag:'my', from:'Malaysia',      type:'ESL Teacher',      date:'DECEMBER 2027'  },
+  { flag:'br', from:'Brazil',        type:'Content Creator',  date:'JULY 2028'      },
+  { flag:'ar', from:'Argentina',     type:'Remote Worker',    date:'JANUARY 2028'   },
+  { flag:'pt', from:'Portugal',      type:'Freelancer',       date:'MARCH 2027'     },
+  { flag:'nz', from:'New Zealand',   type:'Digital Nomad',    date:'OCTOBER 2026'   },
+  { flag:'in', from:'India',         type:'Developer / Tech', date:'AUGUST 2028'    },
+];
+
+let pulseIndex = 0;
+let pulseTimer = null;
+
+function startSocialPulse() {
+  const pulse = document.getElementById('social-pulse');
+  if (!pulse) return;
+  // Show first entry immediately
+  updatePulseCard(PULSE_SEEDS[pulseIndex]);
+  pulseTimer = setInterval(() => {
+    pulseIndex = (pulseIndex + 1) % PULSE_SEEDS.length;
+    rotatePulseCard(PULSE_SEEDS[pulseIndex]);
+  }, 4500);
+}
+
+function stopSocialPulse() {
+  if (pulseTimer) { clearInterval(pulseTimer); pulseTimer = null; }
+}
+
+function updatePulseCard(item) {
+  const el = id => document.getElementById(id);
+  if (!el('sp-flag')) return;
+  el('sp-flag').textContent = typeof item.flag === 'string' && item.flag.length > 2
+    ? item.flag  // already an emoji passed in
+    : flagEmoji(item.flag);
+  el('sp-main').textContent = item.from;
+  el('sp-sub').textContent  = item.type;
+  el('sp-date').textContent = item.date;
+}
+
+function rotatePulseCard(item) {
+  const inner = document.getElementById('sp-inner');
+  if (!inner) return;
+  inner.classList.add('fade');
+  setTimeout(() => {
+    updatePulseCard(item);
+    inner.classList.remove('fade');
+  }, 420);
+}
+
+function injectUserIntoPulse(freedomDateStr, userCountry, userSituation) {
+  if (!freedomDateStr || !userCountry) return;
+  const isoMap = {
+    'Thailand':'th','Vietnam':'vn','Indonesia':'id','Cambodia':'kh','Malaysia':'my',
+    'Philippines':'ph','Singapore':'sg','China':'cn','Japan':'jp','South Korea':'kr',
+    'Taiwan':'tw','Hong Kong':'hk','Laos':'la','Myanmar':'mm',
+    'Argentina':'ar','Colombia':'co','Mexico':'mx','Brazil':'br','Chile':'cl',
+    'Peru':'pe','Uruguay':'uy','Ecuador':'ec',
+    'Portugal':'pt','Spain':'es','Germany':'de','Georgia':'ge','Czech Republic':'cz',
+    'Poland':'pl','Greece':'gr','Italy':'it','France':'fr','Netherlands':'nl',
+    'Hungary':'hu','Romania':'ro','Bulgaria':'bg','Croatia':'hr','Serbia':'rs',
+    'Malta':'mt','Cyprus':'cy','Austria':'at','Switzerland':'ch',
+    'UAE':'ae','Turkey':'tr','Saudi Arabia':'sa','Qatar':'qa',
+    'South Africa':'za','Morocco':'ma','Kenya':'ke','Rwanda':'rw',
+    'Nigeria':'ng','Ghana':'gh','Egypt':'eg',
+    'India':'in','Sri Lanka':'lk','Nepal':'np','Pakistan':'pk',
+    'United Kingdom':'gb','Ireland':'ie','United States':'us',
+    'Canada':'ca','Australia':'au','New Zealand':'nz',
+  };
+  const clean = userCountry.replace(/^[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]\s*/, '').trim();
+  PULSE_SEEDS.unshift({
+    flag: isoMap[clean] || 'un',
+    from: clean,
+    type: userSituation || 'Expat',
+    date: freedomDateStr,
+  });
+}
+
+
+
+// feed handled by initFeed + startFeedRotation
+
+// ── DEBT EXTRACTION ENGINE ───────────────────────────────────────────────────
+
+
+let lastResult = {};
+
+// ── Core math: pure function, no side effects ─────────────────────────────
+function runExtractionEngine({ totalIncome, expenses, savings, target, totalDebt, debts, debtMins }) {
+  const monthlyGap = totalIncome - expenses;
+
+  if (monthlyGap <= 0) {
+    return { unreachable: true, monthlyGap, totalDebt, debts };
+  }
+
+  const MAX_MONTHS = 600;
+  let month = 0;
+
+  // ── Phase 1: pay down debt ───────────────────────────────────────────────
+  // Savings offset debt first, but NEVER the exit fund target.
+  let remainingDebt    = Math.max(0, totalDebt - savings);
+  let remainingSavings = savings > totalDebt ? savings - totalDebt : 0;
+  let debtZeroMonth    = remainingDebt <= 0 ? 0 : -1;
+
+  while (remainingDebt > 0 && month < MAX_MONTHS) {
+    month++;
+    remainingDebt -= monthlyGap;
+    if (remainingDebt <= 0) {
+      remainingSavings += Math.abs(remainingDebt);
+      remainingDebt = 0;
+      debtZeroMonth = month;
+    }
+  }
+  if (debtZeroMonth < 0) debtZeroMonth = month;
+
+  // ── Phase 2: accumulate exit fund ────────────────────────────────────────
+  // Leftover savings from debt paydown go toward the exit fund,
+  // but the exit fund (target) is always a separate milestone from debt-zero.
+  const stillNeeded   = Math.max(0, target - remainingSavings);
+  const monthsForFund = stillNeeded > 0 ? Math.ceil(stillNeeded / monthlyGap) : 0;
+
+  // Freedom date is always AT LEAST 1 month after debt zero when target > 0,
+  // so debt zero and freedom date are always distinct dates.
+  const monthsToFreedom = target > 0
+    ? debtZeroMonth + Math.max(1, monthsForFund)
+    : debtZeroMonth;
+
+  const totalBurden = Math.max(0, (totalDebt + target) - savings);
+
+  return {
+    unreachable: false,
+    monthlyGap,
+    totalBurden,
+    totalDebt,
+    monthsToDebtZero: debtZeroMonth,
+    monthsToFreedom,
+    debts,
+  };
+}
+
+// ── Format a month offset from today as ALL-CAPS "OCTOBER 2027" ──────────
+function monthsToDateStr(monthOffset) {
+  const now = new Date(2026, 4, 1); // May 2026
+  const d = new Date(now);
+  d.setMonth(d.getMonth() + monthOffset);
+  return `${MONTHS[d.getMonth()].toUpperCase()} ${d.getFullYear()}`;
+}
+
+// ── UNIFIED WIZARD (Standard Mode) ───────────────────────────────────────────
+
+let uwData = {
+  country: '', situation: '',
+  debt: 0, destination: '', col: 1000, runway: 0,
+  income: 0, fixed: 0, lifestyle: 0, savings: 0,
+};
+
+const UW_TOTAL = 5;
+
+const UW_DEST_COL = {
+  'Thailand':1200,'Vietnam':1000,'Indonesia':1300,'Indonesia (Bali)':1500,'Cambodia':1000,
+  'Malaysia':1400,'Philippines':1100,'Singapore':3500,'Japan':2200,'South Korea':2000,
+  'Taiwan':1800,'Laos':900,'Myanmar':900,'Argentina':1600,'Colombia':1400,'Mexico':1600,
+  'Brazil':1600,'Chile':1800,'Peru':1300,'Uruguay':1800,'Ecuador':1200,
+  'Portugal':1800,'Spain':1900,'Germany':2200,'Georgia':1000,'Czech Republic':1600,
+  'Poland':1500,'Greece':1700,'Italy':2000,'France':2200,'Netherlands':2400,
+  'Hungary':1400,'Romania':1200,'Bulgaria':1100,'Croatia':1500,'Serbia':1100,
+  'Malta':1800,'Cyprus':1800,'Austria':2200,'Switzerland':3500,
+  'UAE':3000,'Turkey':1200,'Saudi Arabia':2500,'Qatar':2800,'Oman':2200,
+  'Bahrain':2200,'Kuwait':2500,'Jordan':1500,
+  'South Africa':1400,'Morocco':1200,'Kenya':1100,'Rwanda':1100,'Nigeria':1200,
+  'Ghana':1100,'Egypt':1000,'India':900,'Sri Lanka':1000,'Nepal':900,'Pakistan':900,
+  'United Kingdom':2800,'Ireland':2600,'United States':3000,'Canada':2600,
+  'Australia':2800,'New Zealand':2600,'Other':1500,
+};
+
+const UW_REGIONS = {
+  'SE Asia':     ['Thailand','Vietnam','Indonesia (Bali)','Cambodia','Malaysia','Philippines','Singapore','Japan','South Korea','Taiwan','Laos','Myanmar'],
+  'Latin America':['Argentina','Colombia','Mexico','Brazil','Chile','Peru','Uruguay','Ecuador'],
+  'Europe':      ['Portugal','Spain','Germany','Georgia','Czech Republic','Poland','Greece','Italy','France','Netherlands','Hungary','Romania','Bulgaria','Croatia','Serbia','Malta','Cyprus','Austria','Switzerland'],
+  'Africa':      ['South Africa','Morocco','Kenya','Rwanda','Nigeria','Ghana','Egypt'],
+  'Middle East': ['UAE','Turkey','Saudi Arabia','Qatar','Oman','Bahrain','Kuwait','Jordan'],
+  'South Asia':  ['India','Sri Lanka','Nepal','Pakistan'],
+};
+
+function uwGo(step) {
+  document.querySelectorAll('.uw-step').forEach(el => el.style.display = 'none');
+  const el = document.getElementById('uw-' + step);
+  if (el) el.style.display = 'block';
+  const pct = ((step - 1) / UW_TOTAL) * 100;
+  const pf = document.getElementById('uw-progress-fill');
+  if (pf) pf.style.width = pct + '%';
+  ['uw-debtCurr','uw-incomeCurr','uw-fixedCurr','uw-lifestyleCurr','uw-savingsCurr'].forEach(id => {
+    const s = document.getElementById(id);
+    if (s && !s.options.length) s.innerHTML = currOpts('USD');
+  });
+}
+
+function uwValidate(step) {
+  const btn = document.getElementById('uw-next-' + step);
+  if (!btn) return;
+  const vals = {
+    2: () => !!(uwData.destination && uwData.runway > 0),
+    3: () => (parseFloat(document.getElementById('uw-income')?.value) || 0) > 0,
+  };
+  btn.disabled = !(vals[step] ? vals[step]() : true);
+}
+
+function uwRegion(region, btn) {
+  document.querySelectorAll('#uw-regions .uw-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const sel = document.getElementById('uw-destination');
+  sel.innerHTML = '<option value="">Select country...</option>' +
+    (UW_REGIONS[region] || []).map(c => '<option value="' + c + '">' + c + '</option>').join('');
+  document.getElementById('uw-country-wrap').style.display = 'block';
+  uwData.destination = ''; uwData.runway = 0;
+  // Reset runway pill selection
+  document.querySelectorAll('#uw-runway-pills .uw-pill').forEach(p => p.classList.remove('active'));
+  uwValidate(2);
+}
+
+function uwRunway(months, btn) {
+  document.querySelectorAll('#uw-runway-pills .uw-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  uwData.runway = months;
+  // Also read destination in case it was set via onchange
+  const destSel = document.getElementById('uw-destination');
+  if (destSel && destSel.value) {
+    uwData.destination = destSel.value;
+    uwData.col = UW_DEST_COL[uwData.destination] || 1000;
+  }
+  uwValidate(2);
+}
+
+function uwUpdateLive() {
+  const g = id => parseFloat(document.getElementById(id)?.value) || 0;
+  const c = id => document.getElementById(id)?.value || 'USD';
+  const income    = toUSD(g('uw-income'),    c('uw-incomeCurr'));
+  const fixed     = toUSD(g('uw-fixed'),     c('uw-fixedCurr'));
+  const lifestyle = toUSD(g('uw-lifestyle'), c('uw-lifestyleCurr'));
+  const surplus   = income - fixed - lifestyle;
+  const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  set('uwl-income',    fmtUSD(income));
+  set('uwl-fixed',     '−' + fmtUSD(fixed));
+  set('uwl-lifestyle', '−' + fmtUSD(lifestyle));
+  const se = document.getElementById('uwl-surplus');
+  if (se) { se.textContent = fmtUSD(surplus); se.className = 'uw-surplus' + (surplus < 0 ? ' neg' : ''); }
+}
+
+function uwLock() {
+  const g = id => parseFloat(document.getElementById(id)?.value) || 0;
+  const c = id => document.getElementById(id)?.value || 'USD';
+  uwData.country   = document.getElementById('uw-country')?.value || '';
+  uwData.situation = document.getElementById('uw-situation')?.value || '';
+  uwData.debt      = toUSD(g('uw-debt'),      c('uw-debtCurr'));
+  uwData.destination = document.getElementById('uw-destination')?.value || uwData.destination;
+  uwData.col       = UW_DEST_COL[uwData.destination] || 1000;
+  uwData.income    = toUSD(g('uw-income'),    c('uw-incomeCurr'));
+  uwData.fixed     = toUSD(g('uw-fixed'),     c('uw-fixedCurr'));
+  uwData.lifestyle = toUSD(g('uw-lifestyle'), c('uw-lifestyleCurr'));
+  uwData.savings   = toUSD(g('uw-savings'),   c('uw-savingsCurr'));
+
+  const runway     = uwData.col * uwData.runway;
+  const extraction = uwData.debt + runway;
+  const surplus    = uwData.income - uwData.fixed - uwData.lifestyle;
+
+  const hset = (id, v) => { const e = document.getElementById(id); if (e) e.value = v; };
+  hset('std-extraction',      Math.round(extraction));
+  hset('std-savings',         Math.max(0, Math.round(uwData.savings)));
+  hset('std-destination-val', uwData.destination);
+  hset('std-situation-val',   uwData.situation);
+
+  const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  set('uss-debt',       fmtUSD(uwData.debt));
+  set('uss-runway',     fmtUSD(runway) + ' (' + uwData.runway + ' mo)');
+  set('uss-extraction', fmtUSD(extraction));
+  set('uss-income',     fmtUSD(uwData.income) + '/mo');
+  set('uss-spend',      fmtUSD(uwData.fixed + uwData.lifestyle) + '/mo');
+  set('uss-savings',    fmtUSD(uwData.savings));
+  set('uss-surplus',    fmtUSD(surplus) + '/mo');
+
+  document.getElementById('uw-wizard-panel').style.display = 'none';
+  document.getElementById('uw-summary').style.display = 'block';
+  const pf = document.getElementById('uw-progress-fill');
+  if (pf) pf.style.width = '100%';
+
+  // Lock destination field below wizard
+  const locked = document.getElementById('std-dest-locked');
+  const empty  = document.getElementById('std-dest-empty');
+  const text   = document.getElementById('std-dest-locked-text');
+  if (text) text.textContent = uwData.destination;
+  if (locked) locked.style.display = 'flex';
+  if (empty)  empty.style.display  = 'none';
+}
+
+function uwRestart() {
+  uwData = { country: '', situation: '', debt: 0, destination: '', col: 1000, runway: 0, income: 0, fixed: 0, lifestyle: 0, savings: 0 };
+  document.getElementById('uw-summary').style.display  = 'none';
+  document.getElementById('uw-wizard-panel').style.display = 'block';
+  const locked = document.getElementById('std-dest-locked');
+  const empty  = document.getElementById('std-dest-empty');
+  if (locked) locked.style.display = 'none';
+  if (empty)  empty.style.display  = 'block';
+  uwGo(1);
+}
+
+
+// ── MODE STATE ───────────────────────────────────────────────────────────────
+let isCalibrated = false;
+
+function setMode(deep) {
+  isCalibrated = deep;
+  document.getElementById('mode-standard').style.display = deep ? 'none' : 'block';
+  document.getElementById('mode-deep').style.display     = deep ? 'block' : 'none';
+  document.getElementById('tab-standard').classList.toggle('active', !deep);
+  document.getElementById('tab-deep').classList.toggle('active', deep);
+  // Re-animate the revealed section
+  const el = document.getElementById(deep ? 'mode-deep' : 'mode-standard');
+  el.classList.remove('mode-section');
+  void el.offsetWidth;
+  el.classList.add('mode-section');
+}
+
+// ── Collect & parse all form inputs into plain numbers (USD) ─────────────
+function gatherInputs() {
+  if (!isCalibrated) {
+    const debtAmt    = uwData.debt || 0;
+    const runway     = (uwData.col || 1000) * (uwData.runway || 0);
+    const extraction = debtAmt + runway;
+    const surplus    = uwData.income - uwData.fixed - uwData.lifestyle;
+    const currentSavings = uwData.savings || 0;
+    return {
+      totalIncome: uwData.income || 0,
+      expenses:    (uwData.fixed + uwData.lifestyle) || 0,
+      savings:     currentSavings,
+      target:      runway,           // exit fund = runway buffer only
+      totalDebt:   debtAmt,          // debt is separate so engine tracks debt-zero correctly
+      debtMins:    0,
+      debts: debtAmt > 0 ? [{ name: 'Total debt', bal: debtAmt, min: 0, cur: 'USD', balUSD: debtAmt, minUSD: 0 }] : [],
+      _stdMode: true,
+    };
+  }
+
+  // ── DEEP CALIBRATION MODE: full granular path ────────────────────────
+  const income   = toUSD(parseFloat(document.getElementById('income').value)  || 0, document.getElementById('incomeCurr').value);
+  const side     = toUSD(parseFloat(document.getElementById('side').value)    || 0, document.getElementById('sideCurr').value);
+  const expRaw   = toUSD(parseFloat(document.getElementById('expenses').value)|| 0, document.getElementById('expCurr').value);
+  const colRaw   = toUSD(parseFloat(document.getElementById('costOfLiving').value)|| 0, document.getElementById('colCurr').value);
+  const expenses = Math.max(expRaw, colRaw);
+  const savings  = toUSD(parseFloat(document.getElementById('savings').value) || 0, document.getElementById('savCurr').value);
+  const target   = toUSD(parseFloat(document.getElementById('target').value)  || 0, document.getElementById('targetCurr').value);
+
+  const debtRows = document.querySelectorAll('.debt-row');
+  const debts = [];
+  let totalDebt = 0;
+
+  debtRows.forEach(row => {
+    const name   = row.querySelector('.debt-name').value || 'Unnamed debt';
+    const bal    = parseFloat(row.querySelector('.debt-bal').value) || 0;
+    const min    = parseFloat(row.querySelector('.debt-min').value) || 0;
+    const cur    = row.querySelector('.debt-cur').value;
+    const balUSD = toUSD(bal, cur);
+    const minUSD = toUSD(min, cur);
+    if (bal > 0 || min > 0) {
+      debts.push({ name, bal, min, cur, balUSD, minUSD });
+      totalDebt += balUSD;
+    }
+  });
+
+  return {
+    totalIncome: income + side,
+    expenses,
+    savings,
+    target,
+    totalDebt,
+    debtMins: debts.reduce((s, d) => s + d.minUSD, 0),
+    debts,
+  };
+}
+
+
+
+
+// ── TRAJECTORY STATES ────────────────────────────────────────────────────────
+
+const TRAJECTORY_STATES = {
+  baseline: {
+    name: 'Baseline Reset',
+    tagline: 'The gap has to close before the date can open.',
+    copy: 'Your income doesn\'t currently cover your outgoings. That means no surplus is reaching debt, and no runway is being built. This isn\'t a character assessment. It\'s arithmetic. The freedom date becomes calculable the moment the monthly gap flips positive.',
+    actions: [
+      'Find one income source you can add this month — tutoring, freelancing, a second shift',
+      'List every fixed cost and cut the bottom two without negotiation',
+      'The target is simple: income above expenses. Everything else follows from that',
+    ],
+  },
+  entanglement: {
+    name: 'Stable Entanglement',
+    tagline: 'Everything is manageable. Nothing is moving.',
+    copy: 'The numbers work. You\'re not sinking. But you\'re not extracting either. Obligations are being met, lifestyle is stable, and the date is years away. The trap here is invisible: comfort reads as progress when it isn\'t. The entanglement isn\'t dramatic. It\'s just quietly consuming time.',
+    actions: [
+      'Set a hard surplus floor — treat it like a bill, not a leftover',
+      'Identify what\'s absorbing the gap: lifestyle creep, low income, or both',
+      'Give yourself a deadline for the next financial audit — not next year, next month',
+    ],
+  },
+  sedation: {
+    name: 'Comfort Sedation',
+    tagline: 'Low cost of living is doing the work your surplus should be doing.',
+    copy: 'You\'ve likely already made a geographic move that reduced the pressure. It worked. The pain is gone. But the arithmetic didn\'t follow you. A cheap environment can mask a stalled trajectory for years, sometimes decades. The question isn\'t whether you can survive here. It\'s whether you\'re actually building toward leaving.',
+    actions: [
+      'Calculate your real monthly surplus — not what feels fine, what the numbers say',
+      'Set a non-negotiable monthly transfer to savings before spending anything',
+      'Comfort is not momentum. Name a specific exit date and work backward from it',
+    ],
+  },
+  drift: {
+    name: 'Slow Drift',
+    tagline: 'Moving, but not fast enough to feel it.',
+    copy: 'There\'s surplus. Debt is technically shrinking. The date exists. But at this pace, lifestyle creep or a single unexpected cost could erase months of progress overnight. Drift is what happens when the plan is technically intact but urgency has gone quiet. Small accelerations compound here faster than anywhere else on the ladder.',
+    actions: [
+      'Pick one expense to cut by 15% this month — not someday, this month',
+      'Add one income stream, even a small one. Flat dollar additions move the date faster than you think',
+      'Check the Fast Track section below — the levers exist to show you exactly what moves the date',
+    ],
+  },
+  extraction: {
+    name: 'Active Extraction',
+    tagline: 'You have a number. You have a date. You\'re in motion.',
+    copy: 'The gap is real, the debt is falling, and the freedom date is close enough to be felt. This is the phase where behaviour matters most. Not because the math is fragile, but because the finish line introduces its own kind of distraction. Don\'t inflate the lifestyle before the date lands.',
+    actions: [
+      'Lock in your spending — this is not the moment to upgrade anything',
+      'If a windfall hits, throw it at debt first, savings second, nothing else',
+      'Keep the date visible. Review it monthly. Let it stay uncomfortable until it arrives',
+    ],
+  },
+  velocity: {
+    name: 'Velocity Phase',
+    tagline: 'The exit is no longer theoretical.',
+    copy: 'Surplus is strong, debt is collapsing, and the date is inside two years. At this point the variables are execution, not strategy. The risk isn\'t that the plan fails. It\'s that you slow down when you can see the end. Keep the burn low. Keep the rate high. The date is already yours mathematically. Now it just needs to happen.',
+    actions: [
+      'Don\'t touch the surplus allocation — protect it from every competing priority',
+      'Start planning the logistics of actually leaving: visa, storage, final month costs',
+      'The only thing left to do is not sabotage it. Stay boring until the date arrives',
+    ],
+  },
+};
+
+function deriveTrajectoryState(monthlyGap, monthsToFreedom, unreachable) {
+  if (unreachable || monthlyGap <= 0) return 'baseline';
+  if (monthsToFreedom <= 24)          return 'velocity';
+  if (monthsToFreedom <= 36)          return 'extraction';
+  if (monthlyGap < 300 && monthsToFreedom > 36) return 'sedation';
+  if (monthsToFreedom <= 54)          return 'drift';
+  if (monthsToFreedom <= 90)          return 'entanglement';
+  return 'entanglement';
+}
+
+const STATE_ORDER = ['baseline','entanglement','sedation','drift','extraction','velocity'];
+
+function renderTrajectoryState(monthlyGap, monthsToFreedom, unreachable) {
+  const stateKey = deriveTrajectoryState(monthlyGap, monthsToFreedom, unreachable);
+  const state    = TRAJECTORY_STATES[stateKey];
+  const activeIdx = STATE_ORDER.indexOf(stateKey);
+
+  // Update pills
+  document.querySelectorAll('.traj-pill').forEach((pill, i) => {
+    pill.classList.remove('active', 'past');
+    if (i === activeIdx)      pill.classList.add('active');
+    else if (i < activeIdx)   pill.classList.add('past');
+  });
+
+  // Update body
+  document.getElementById('traj-state-name').textContent = state.name;
+  document.getElementById('traj-tagline').textContent    = state.tagline;
+  document.getElementById('traj-copy').textContent       = state.copy;
+
+  // Render action list
+  document.getElementById('traj-action-list').innerHTML = state.actions.map(a => `
+    <div class="traj-action-item">
+      <div class="traj-action-dot"></div>
+      <div class="traj-action-text">${a}</div>
+    </div>
+  `).join('');
+
+  // Scroll active pill into view
+  const activePill = document.querySelector('.traj-pill.active');
+  if (activePill) {
+    setTimeout(() => activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 400);
+  }
+}
+
+// ── Build comparison badge from months-to-freedom vs benchmark ───────────
+
+
+// ── Render debt breakdown bars ────────────────────────────────────────────
+function renderBreakdown(debts) {
+  const bd = document.getElementById('r-breakdown');
+  if (!debts.length) { bd.innerHTML = ''; return; }
+  const maxBal = Math.max(...debts.map(d => d.balUSD), 1);
+  const colors = ['#e2f530','#7b7bff','#ff6b6b','#ffb400','#4dffb4','#ff9f7b'];
+  bd.innerHTML = '<h3>Debt breakdown</h3>' + debts.map((d, i) => {
+    const pct = (d.balUSD / maxBal * 100).toFixed(1);
+    return `
+      <div class="bar-item">
+        <div class="bar-top">
+          <span class="bar-name">${d.name} <span style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--muted);font-weight:400;">${d.cur}</span></span>
+          <span class="bar-amt">${fmtUSD(d.balUSD)} · ${fmtUSD(d.minUSD)}/mo</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" data-w="${pct}%" style="background:${colors[i % colors.length]}"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ── Main entry point (called by the CTA button) ──────────────────────────
+function calculate() {
+  if (!isCalibrated) {
+    const summaryVisible = document.getElementById('uw-summary').style.display !== 'none';
+    if (!summaryVisible) {
+      // Flash the wizard to indicate it needs completing
+      const phaseEl = document.getElementById('uw-phase-label');
+      if (phaseEl) { phaseEl.style.color = 'var(--red)'; setTimeout(() => phaseEl.style.color = '', 1500); }
+      return;
+    }
+  } else {
+    // Deep mode validation
+    const country   = document.getElementById('userCountry').value;
+    const situation = document.getElementById('userSituation').value;
+    document.getElementById('userCountry').style.borderColor   = country   ? 'var(--border)' : 'var(--red)';
+    document.getElementById('userSituation').style.borderColor = situation ? 'var(--border)' : 'var(--red)';
+    if (!country || !situation) return;
+  }
+
+  // Run the engine
+  const inputs = gatherInputs();
+  const result = runExtractionEngine(inputs);
+
+  // ── Derive display values ────────────────────────────────────────────────
+  const unreachable      = result.unreachable;
+  const monthsToFreedom  = unreachable ? null : result.monthsToFreedom;
+  const monthsToDebtZero = unreachable ? null : result.monthsToDebtZero;
+
+  const freedomDateStr   = unreachable ? 'HORIZON UNREACHABLE'
+                         : monthsToFreedom === 0 ? 'THIS MONTH'
+                         : monthsToDateStr(monthsToFreedom);
+
+  const debtZeroDateStr  = unreachable || monthsToDebtZero === 0
+                         ? (inputs.totalDebt === 0 ? 'DEBT FREE' : 'HORIZON UNREACHABLE')
+                         : monthsToDateStr(monthsToDebtZero);
+
+
+
+  // ── Populate result screen ───────────────────────────────────────────────
+
+  // Primary freedom date (big number)
+  document.getElementById('r-date').textContent = freedomDateStr;
+  document.getElementById('r-date').style.fontFamily = "'Barlow Condensed', sans-serif";
+
+  document.getElementById('r-months').textContent = unreachable
+    ? 'Fix your monthly gap to unlock a date'
+    : monthsToFreedom === 0
+      ? 'You can leave right now'
+      : `${monthsToFreedom} months from today`;
+
+  // Stats row
+  const surplusEl = document.getElementById('r-surplus');
+  surplusEl.textContent = fmtUSD(result.monthlyGap, true) + '/mo';
+  surplusEl.className   = 'rs-val ' + (result.monthlyGap >= 0 ? 'pos' : 'neg');
+
+  document.getElementById('r-totaldebt').textContent = fmtUSD(inputs.totalDebt);
+  document.getElementById('r-monthsout').textContent = unreachable ? '∞' : monthsToFreedom;
+
+  // Debt Zero date — the first of the two key milestones
+  const dzEl = document.getElementById('r-debtzero');
+  if (dzEl) {
+    dzEl.textContent = unreachable ? 'HORIZON UNREACHABLE'
+      : inputs.totalDebt === 0     ? 'DEBT FREE NOW'
+      : debtZeroDateStr;
+    dzEl.className = 'rs-val ' + (unreachable ? 'neg' : 'dz');
+  }
+  // Debt breakdown bars
+  renderBreakdown(result.debts);
+
+  // Init Horizon Calibrator with Stage 1 result
+  initCalibrator(result, inputs);
+
+  // Render Trajectory State
+  renderTrajectoryState(result.monthlyGap, monthsToFreedom, unreachable);
+
+  // Fire telemetry — silent, non-blocking
+  sendTelemetry(inputs, result, freedomDateStr);
+
+  // Store result for share function
+  const userCountry   = isCalibrated
+    ? document.getElementById('userCountry').value
+    : uwData.country;
+  const userSituation = isCalibrated
+    ? document.getElementById('userSituation').value
+    : uwData.situation;
+  lastResult = {
+    freedomDateStr,
+    debtZeroDateStr,
+    monthsToFreedom,
+    monthsToDebtZero,
+    unreachable,
+    monthlyGap: result.monthlyGap,
+    totalBurden: result.totalBurden,
+    totalDebt: inputs.totalDebt,
+    userCountry,
+    userSituation,
+  };
+
+  // Inject user into social pulse and start it
+  injectUserIntoPulse(freedomDateStr, userCountry, userSituation);
+  buildTicker();
+
+  // Show result screen
+  document.getElementById('input-screen').style.display = 'none';
+  const rs = document.getElementById('result-screen');
+  rs.classList.add('show');
+  window.scrollTo(0, 0);
+
+  // Animate progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(b => { b.style.width = b.dataset.w; });
+  }, 150);
+}
+
+// ── SHARE ────────────────────────────────────────────────────────────────────
+function shareToX() {
+  const { freedomDateStr, unreachable } = lastResult;
+  if (!freedomDateStr) return;
+
+  const text = unreachable
+    ? `Just ran my numbers on freedomdate.io\n\nI need to fix my monthly gap before I can leave 😅\n\nFree tool for expats & nomads:\nfreedomdate.io`
+    : `My freedom date is ${freedomDateStr}.\n\nCalculated it in 2 minutes — no signup, no BS:\nfreedomdate.io\n\nWhat's yours? 👇`;
+
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// ── RESET ────────────────────────────────────────────────────────────────────
+function reset() {
+  hideTicker();
+  document.getElementById('result-screen').classList.remove('show');
+  document.getElementById('result-screen').style.display = '';
+  document.getElementById('input-screen').style.display = '';
+  window.scrollTo(0, 0);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+
+// ── LIVE FEED ─────────────────────────────────────────────────────────────
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('wheel', function() {
+    if (document.activeElement && document.activeElement.type === 'number') {
+      document.activeElement.blur();
+    }
+  }, { passive: true });
+  populateSelects();
+  PRESETS.forEach(([name, cur]) => addDebt(name, cur));
+  uwGo(1);
+  buildTicker();
+});
+
+let calibratorOpen = false;
+
+function toggleCalibrator() {
+  calibratorOpen = !calibratorOpen;
+  const panel = document.getElementById('calibrator-panel');
+  const arrow = document.getElementById('hazard-arrow');
+  if (calibratorOpen) {
+    panel.style.display = 'block';
+    // Force reflow before adding animation class
+    void panel.offsetWidth;
+    panel.classList.add('open');
+    arrow.textContent = '↑';
+  } else {
+    panel.classList.remove('open');
+    panel.style.display = 'none';
+    arrow.textContent = '↓';
+  }
+}
+
+// ── HORIZON CALIBRATOR ───────────────────────────────────────────────────────
+
+const SHAVE_LEVELS = [
+  { name: 'Standard', pct: 0,    desc: 'Your current lifestyle, unchanged.' },
+  { name: 'Lean',     pct: 0.10, desc: 'Cut the fat. Fewer nights out, smarter shopping.' },
+  { name: 'Blackout', pct: 0.25, desc: 'Survival mode. No luxuries. Pure extraction.' },
+  { name: 'War Room', pct: 0.40, desc: 'Full austerity. Every dollar is a weapon.' },
+];
+
+let calState = {
+  shaveIdx: 0,
+  graftBoost: 0,
+  baseIncome: 0,
+  baseExpenses: 0,
+  baseSavings: 0,
+  baseTarget: 0,
+  baseTotalDebt: 0,
+  baseDebtMins: 0,
+  baseMonths: 0,
+};
+
+let flickerTimer = null;
+
+function setShave(idx) {
+  calState.shaveIdx = idx;
+  document.querySelectorAll('.shave-step').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+  document.getElementById('shave-desc').textContent = SHAVE_LEVELS[idx].desc;
+  recalibrate();
+}
+
+function toggleGraft(btn) {
+  btn.classList.toggle('active');
+  // graftBoost now stores total flat USD amount from active pills
+  calState.graftBoost = Array.from(document.querySelectorAll('.graft-pill.active'))
+    .reduce((sum, el) => sum + (parseFloat(el.dataset.amount) || 0), 0);
+  recalibrate();
+}
+
+function recalibrate() {
+  const { shaveIdx, graftBoost, baseIncome, baseExpenses,
+          baseSavings, baseTarget, baseTotalDebt, baseDebtMins, baseMonths } = calState;
+
+  const expMultiplier = 1 - SHAVE_LEVELS[shaveIdx].pct;
+  const adjExpenses   = baseExpenses * expMultiplier;
+  const adjIncome     = baseIncome + graftBoost;  // graftBoost is flat USD/mo
+  const adjGap        = adjIncome - adjExpenses;
+
+  // Run the simulation engine — aggressive debt paydown then savings
+  const adjResult = runExtractionEngine({
+    totalIncome: adjIncome,
+    expenses:    adjExpenses,
+    savings:     baseSavings,
+    target:      baseTarget,
+    totalDebt:   baseTotalDebt,
+    debtMins:    baseDebtMins,
+    debts:       [],
+  });
+
+  const adjMonths    = adjResult.unreachable ? null : adjResult.monthsToFreedom;
+  const monthsSaved  = adjMonths !== null ? Math.max(0, baseMonths - adjMonths) : null;
+
+  // Flicker + update display
+  triggerFlicker(adjResult.unreachable, adjMonths, monthsSaved, adjGap, adjExpenses, adjIncome);
+
+  // Update sub-stats
+  const gapEl = document.getElementById('cal-gap');
+  gapEl.textContent  = adjResult.unreachable ? '—' : fmtUSD(adjGap, true) + '/mo';
+  gapEl.className    = 'cs-val ' + (adjGap > 0 ? 'pos' : 'neg');
+
+  const savedEl = document.getElementById('cal-saved');
+  savedEl.textContent = monthsSaved !== null ? (monthsSaved > 0 ? `−${monthsSaved} mo` : 'None yet') : '—';
+  savedEl.className   = 'cs-val ' + (monthsSaved > 0 ? 'pos' : '');
+
+  document.getElementById('cal-exp').textContent = fmtUSD(adjExpenses) + '/mo';
+  document.getElementById('cal-inc').textContent = graftBoost > 0 ? fmtUSD(adjIncome, true) + '/mo' : fmtUSD(baseIncome, true) + '/mo';
+}
+
+function triggerFlicker(unreachable, adjMonths, monthsSaved, adjGap, adjExpenses, adjIncome) {
+  const ftEl    = document.getElementById('ft-date');
+  const deltaEl = document.getElementById('ft-delta');
+  const calInd  = document.getElementById('cal-indicator');
+
+  // Show calibrating indicator
+  calInd.classList.add('active');
+  clearTimeout(flickerTimer);
+
+  // Add flicker class (remove then re-add to retrigger animation)
+  ftEl.classList.remove('flickering');
+  void ftEl.offsetWidth; // reflow
+  ftEl.classList.add('flickering');
+
+  flickerTimer = setTimeout(() => {
+    ftEl.classList.remove('flickering');
+    calInd.classList.remove('active');
+
+    if (unreachable || adjGap <= 0) {
+      ftEl.textContent   = 'HORIZON UNREACHABLE';
+      ftEl.style.background = '#e84040';
+      ftEl.style.color      = '#fff';
+      deltaEl.innerHTML  = '';
+    } else {
+      const dateStr = adjMonths === 0 ? 'THIS MONTH' : monthsToDateStr(adjMonths);
+      ftEl.textContent      = dateStr;
+      ftEl.style.background = 'var(--lime)';
+      ftEl.style.color      = 'var(--ink)';
+
+      if (monthsSaved > 0) {
+        deltaEl.innerHTML = `<span class="saved">↑ ${monthsSaved} months earlier</span> than your baseline`;
+      } else if (monthsSaved === 0) {
+        deltaEl.innerHTML = 'No change yet — move the levers above';
+      } else {
+        deltaEl.innerHTML = '';
+      }
+    }
+  }, 380);
+}
+
+// ── GRAFT MAP — career-specific income levers ────────────────────────────
+const GRAFT_MAP = {
+  Education: [
+    { label: 'Private Tutoring',  amount: 300,  desc: '~4hrs/week' },
+    { label: 'IELTS Examining',   amount: 250,  desc: 'weekend sessions' },
+    { label: 'Curriculum Design', amount: 500,  desc: 'one project/mo' },
+    { label: 'Proofreading',      amount: 150,  desc: 'evenings' },
+  ],
+  Creative: [
+    { label: 'Freelance Gigs',    amount: 400,  desc: '2–3 small projects' },
+    { label: 'Asset Sales',       amount: 150,  desc: 'passive income' },
+    { label: 'Content Editing',   amount: 300,  desc: 'few clients' },
+    { label: 'Social Media Mgmt', amount: 400,  desc: '1–2 clients' },
+  ],
+  Corporate: [
+    { label: 'Consulting',        amount: 500,  desc: '2–3 sessions' },
+    { label: 'Virtual Assistance',amount: 350,  desc: 'part-time client' },
+    { label: 'Transcription',     amount: 200,  desc: 'evenings' },
+    { label: 'Data Cleaning',     amount: 300,  desc: 'project work' },
+  ],
+  Tech: [
+    { label: 'Bug Bounties',      amount: 400,  desc: 'avg, variable' },
+    { label: 'App Maintenance',   amount: 500,  desc: 'one retainer' },
+    { label: 'Technical Writing', amount: 600,  desc: '2 articles/mo' },
+    { label: 'Code Review',       amount: 400,  desc: 'freelance' },
+  ],
+};
+
+// Map situation option text → GRAFT_MAP key
+function situationToCategory(situation) {
+  const s = situation || '';
+  if (/teacher|tutor|lecturer|tefl|celta|esl|efl/i.test(s))           return 'Education';
+  if (/creator|content|writer|journalist|designer|artist/i.test(s))   return 'Creative';
+  if (/nomad|remote|freelancer|contractor|marketer|assistant|virtual/i.test(s)) return 'Creative';
+  if (/corporate|expat|ngo|diplomat|military|healthcare|engineer|au pair/i.test(s)) return 'Corporate';
+  if (/developer|tech/i.test(s))                                       return 'Tech';
+  return 'Corporate'; // sensible default
+}
+
+function renderGraftPills(situation) {
+  const category = situationToCategory(situation);
+  const pills     = GRAFT_MAP[category] || GRAFT_MAP.Corporate;
+  const grid      = document.getElementById('graft-grid');
+  const catLabel  = document.getElementById('graft-category');
+
+  if (catLabel) catLabel.textContent = `[${category.toUpperCase()}]`;
+
+  grid.innerHTML = pills.map(p =>
+    `<button class="graft-pill" data-amount="${p.amount}" onclick="toggleGraft(this)">
+      ${p.label}
+      <span style="display:block;font-size:12px;font-weight:900;letter-spacing:0.5px;margin-top:3px;font-family:'Barlow Condensed',sans-serif;">+$${p.amount}/mo</span>
+      <span style="display:block;font-size:8px;letter-spacing:1px;opacity:0.45;margin-top:1px;font-family:'Syne Mono',monospace;">${p.desc}</span>
+    </button>`
+  ).join('');
+}
+
+function initCalibrator(engineResult, inputs) {
+  calState.baseSavings   = inputs.savings;
+  calState.baseTarget    = inputs.target;
+  calState.baseTotalDebt = inputs.totalDebt;
+  calState.baseDebtMins  = inputs.debtMins || 0;
+  calState.baseMonths    = engineResult.unreachable ? 9999 : engineResult.monthsToFreedom;
+  calState.shaveIdx      = 0;
+  calState.graftBoost    = 0;
+
+  if (!isCalibrated) {
+    if (uwData.income > 0) {
+      document.getElementById('ftw-panel').style.display = 'none';
+      document.getElementById('cal-levers').style.display = 'block';
+      calState.baseIncome   = uwData.income;
+      calState.baseExpenses = uwData.fixed + uwData.lifestyle;
+      calState.baseSavings  = uwData.savings || 0;
+      _bootLevers(engineResult, uwData.income, uwData.fixed + uwData.lifestyle);
+    } else {
+      // Fallback: show the 3-question fast-track wizard
+      document.getElementById('ftw-panel').style.display = 'block';
+      document.getElementById('cal-levers').style.display = 'none';
+      document.querySelectorAll('.ftw-step').forEach(el => el.style.display = 'none');
+      document.getElementById('ftw-1').style.display = 'block';
+      ['ftw-incomeCurr','ftw-expCurr','ftw-savCurr'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !el.options.length) el.innerHTML = currOpts('USD');
+      });
+      calState.baseIncome   = 0;
+      calState.baseExpenses = 0;
+    }
+  } else {
+    // Deep Mode: levers available immediately with real data
+    document.getElementById('ftw-panel').style.display = 'none';
+    document.getElementById('cal-levers').style.display = 'block';
+    calState.baseIncome   = inputs.totalIncome;
+    calState.baseExpenses = inputs.expenses;
+    _bootLevers(engineResult, inputs.totalIncome, inputs.expenses);
+  }
+}
+
+// Called when wizard completes — wires real numbers into the calibrator
+function ftwApply() {
+  const income   = toUSD(parseFloat(document.getElementById('ftw-income').value)   || 0, document.getElementById('ftw-incomeCurr').value);
+  const expenses = toUSD(parseFloat(document.getElementById('ftw-expenses').value)  || 0, document.getElementById('ftw-expCurr').value);
+  const savings  = toUSD(parseFloat(document.getElementById('ftw-savings').value)   || 0, document.getElementById('ftw-savCurr').value);
+
+  calState.baseIncome   = income;
+  calState.baseExpenses = expenses;
+  calState.baseSavings  = savings;
+
+  // Re-run engine with real figures so base months is accurate
+  const reResult = runExtractionEngine({
+    totalIncome: income,
+    expenses,
+    savings,
+    target:    calState.baseTarget,
+    totalDebt: calState.baseTotalDebt,
+    debtMins:  calState.baseDebtMins,
+    debts: [],
+  });
+  calState.baseMonths = reResult.unreachable ? 9999 : reResult.monthsToFreedom;
+
+  // Hide wizard, show levers
+  document.getElementById('ftw-panel').style.display  = 'none';
+  document.getElementById('cal-levers').style.display = 'block';
+  _bootLevers(reResult, income, expenses);
+}
+
+function ftwNext(step) {
+  document.querySelectorAll('.ftw-step').forEach(el => el.style.display = 'none');
+  document.getElementById('ftw-' + step).style.display = 'block';
+}
+
+function ftwBack(step) {
+  document.querySelectorAll('.ftw-step').forEach(el => el.style.display = 'none');
+  document.getElementById('ftw-' + step).style.display = 'block';
+}
+
+// Shared boot — sets up levers UI from real income/expense numbers
+function _bootLevers(engineResult, income, expenses) {
+  // Reset lever UI
+  document.querySelectorAll('.shave-step').forEach((el, i) => el.classList.toggle('active', i === 0));
+  document.getElementById('shave-desc').textContent = SHAVE_LEVELS[0].desc;
+  document.querySelectorAll('.graft-pill').forEach(el => el.classList.remove('active'));
+
+  const situation = isCalibrated
+    ? document.getElementById('userSituation').value
+    : uwData.situation || document.getElementById('uw-situation')?.value || '';
+  renderGraftPills(situation);
+
+  const ftEl    = document.getElementById('ft-date');
+  const deltaEl = document.getElementById('ft-delta');
+  document.getElementById('cal-indicator').classList.remove('active');
+
+  if (engineResult.unreachable) {
+    ftEl.textContent      = 'HORIZON UNREACHABLE';
+    ftEl.style.background = '#e84040';
+    ftEl.style.color      = '#fff';
+  } else {
+    ftEl.textContent      = engineResult.monthsToFreedom === 0 ? 'THIS MONTH' : monthsToDateStr(engineResult.monthsToFreedom);
+    ftEl.style.background = 'var(--lime)';
+    ftEl.style.color      = 'var(--ink)';
+  }
+  deltaEl.innerHTML = 'Move the levers below to fast-track your exit.';
+
+  const gap = income - expenses;
+  document.getElementById('cal-gap').textContent   = engineResult.unreachable ? '—' : fmtUSD(gap, true) + '/mo';
+  document.getElementById('cal-gap').className     = 'cs-val ' + (gap > 0 ? 'pos' : 'neg');
+  document.getElementById('cal-saved').textContent = '0 mo';
+  document.getElementById('cal-saved').className   = 'cs-val';
+  document.getElementById('cal-exp').textContent   = fmtUSD(expenses) + '/mo';
+  document.getElementById('cal-inc').textContent   = fmtUSD(income, true) + '/mo';
+}
+
+
+// ── SHARE HORIZON ENGINE ─────────────────────────────────────────────────────
+
+// ── SHARE CARD ────────────────────────────────────────────────────────────────
+
+function drawShareCard() {
+  const { freedomDateStr, monthsToFreedom, monthlyGap,
+          debtZeroDateStr, unreachable, userCountry, userSituation } = lastResult;
+  const totalDebt = lastResult.totalDebt != null ? lastResult.totalDebt : 0;
+
+  const S  = 1080;
+  const cv = document.createElement('canvas');
+  cv.width = S; cv.height = S;
+  const c  = cv.getContext('2d');
+
+  const LIME = '#e2f530';
+  const INK  = '#0e0e0b';
+  const RED  = '#ff3333';
+
+  const lines  = unreachable
+    ? ['HORIZON', 'UNREACHABLE']
+    : (freedomDateStr || '—').toUpperCase().split(' '); // e.g. ['DECEMBER', '2027']
+  const months = unreachable ? null : monthsToFreedom;
+  const gapStr = monthlyGap != null ? fmtUSD(monthlyGap, true) + '/mo' : '—';
+  const debtStr= fmtUSD(totalDebt);
+  const dzStr  = (debtZeroDateStr || '—').toUpperCase();
+  const country= (userCountry || '').replace(/^[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]\s*/, '').trim().toUpperCase();
+  const sit    = (userSituation || '').toUpperCase();
+
+  const footerY = Math.round(S * 0.74);
+
+  // ── FULL INK BACKGROUND
+  c.fillStyle = INK;
+  c.fillRect(0, 0, S, S);
+
+  // ── NETWORK TEXTURE — grid + nodes, full card
+  c.strokeStyle = 'rgba(212,245,60,0.05)';
+  c.lineWidth = 1;
+  for (let x = 0; x <= S; x += 54) { c.beginPath(); c.moveTo(x,0); c.lineTo(x,footerY); c.stroke(); }
+  for (let y = 0; y <= footerY; y += 54) { c.beginPath(); c.moveTo(0,y); c.lineTo(S,y); c.stroke(); }
+  const rng = s => { let v = Math.sin(s * 127.1) * 43758.5453123; return v - Math.floor(v); };
+  c.fillStyle = 'rgba(212,245,60,0.18)';
+  let ni = 0;
+  for (let x = 54; x < S; x += 54)
+    for (let y = 54; y < footerY; y += 54)
+      if (rng(ni++) > 0.78) { c.beginPath(); c.arc(x, y, 2.5, 0, Math.PI*2); c.fill(); }
+
+  // ── LIME FOOTER
+  c.fillStyle = LIME;
+  c.fillRect(0, footerY, S, S - footerY);
+
+  // ── TOP LIME BAR
+  c.fillStyle = LIME;
+  c.fillRect(0, 0, S, 44);
+  c.font = '900 14px "Barlow Condensed", sans-serif';
+  c.fillStyle = INK;
+  c.letterSpacing = '4px';
+  c.textAlign = 'left';
+  c.fillText('FREEDOMDATE.IO', 28, 27);
+  const now = new Date();
+  c.textAlign = 'right';
+  c.fillText(`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`, S - 28, 27);
+  c.textAlign = 'left';
+
+  // ── KICKER — visible, breathing room from top bar
+  c.font = '800 36px "Barlow Condensed", sans-serif';
+  c.fillStyle = 'rgba(212,245,60,0.75)';
+  c.letterSpacing = '6px';
+  c.textAlign = 'left';
+  c.fillText('YOUR FREEDOM DATE', 36, 116);
+
+  // ── THE DATE — massive, slight padding, fills the dark block
+  c.letterSpacing = '-4px';
+
+  function fitLine(text, maxW) {
+    c.font = `900 300px "Barlow Condensed", sans-serif`;
+    const measured = c.measureText(text).width;
+    return Math.floor(300 * (maxW / measured));
+  }
+
+  const PAD   = 36;
+  const availW = S - PAD * 2;
+
+  let dateY = 124;
+
+  lines.forEach((word, i) => {
+    const fs = Math.min(fitLine(word, availW), 420);
+    c.font = `900 ${fs}px "Barlow Condensed", sans-serif`;
+    const lineH = fs * 0.88;
+    dateY += lineH;
+
+    // Shadow echo
+    c.fillStyle = 'rgba(212,245,60,0.06)';
+    c.fillText(word, PAD + 5, dateY + 7);
+    // Main lime
+    c.fillStyle = LIME;
+    c.fillText(word, PAD, dateY);
+  });
+
+  // ── FOOTNOTES — always below the date, anchored to footer top
+  const fnY = Math.min(dateY + 44, footerY - 18);
+
+  c.font = '600 21px "Barlow Condensed", sans-serif';
+  c.letterSpacing = '1px';
+  c.fillStyle = 'rgba(255,255,255,0.38)';
+  const monthsTxt = unreachable ? 'Cannot calculate — fix your gap' : `${months} months from today`;
+  c.textAlign = 'left';
+  c.fillText(monthsTxt, PAD, fnY);
+
+  // ── STATS IN LIME FOOTER — 2 cols, evenly spaced
+  const statGap = 80;
+  const col1W   = 320;
+  const totalW  = col1W * 2 + statGap;
+  const startX  = (S - totalW) / 2;
+  const sY      = footerY + 72;
+
+  [
+    { label: 'DEBT BURDEN', value: debtStr },
+    { label: 'DEBT ZERO',   value: dzStr   },
+  ].forEach((st, i) => {
+    const tx = i === 0 ? startX : startX + col1W + statGap;
+
+    if (i > 0) {
+      c.strokeStyle = 'rgba(0,0,0,0.12)';
+      c.lineWidth = 1; c.setLineDash([]);
+      c.beginPath(); c.moveTo(tx - statGap / 2, sY - 8); c.lineTo(tx - statGap / 2, sY + 150); c.stroke();
+    }
+
+    c.font = '700 13px "Barlow Condensed", sans-serif';
+    c.fillStyle = 'rgba(0,0,0,0.4)';
+    c.letterSpacing = '3px';
+    c.textAlign = 'left';
+    c.fillText(st.label, tx, sY + 16);
+
+    c.font = '900 62px "Barlow Condensed", sans-serif';
+    c.fillStyle = INK;
+    c.letterSpacing = '-1px';
+    c.fillText(st.value, tx, sY + 16 + 62 * 0.88);
+  });
+
+  // ── IDENTITY + URL — bottom of lime block
+  const idY = S - 28;
+  const idStr = [country, sit].filter(Boolean).join(' · ');
+  c.font = '700 20px "Barlow Condensed", sans-serif';
+  c.fillStyle = 'rgba(0,0,0,0.45)';
+  c.letterSpacing = '2px';
+  c.textAlign = 'left';
+  if (idStr) c.fillText(idStr, startX, idY);
+  c.font = '900 20px "Barlow Condensed", sans-serif';
+  c.fillStyle = INK;
+  c.letterSpacing = '1px';
+  c.textAlign = 'right';
+  c.fillText('FREEDOMDATE.IO', S - startX, idY);
+  c.textAlign = 'left';
+
+  return cv;
+}
+
+
+function animateGenBar(onDone) {
+  const fill = document.getElementById('gen-bar-fill');
+  const sub  = document.getElementById('gen-sub-label');
+  const steps = [
+    [0,   'reading your numbers',   8],
+    [300, 'drawing the card',       50],
+    [700, 'rendering fonts',        82],
+    [1050,'almost ready',           96],
+  ];
+  steps.forEach(([delay, text, pct]) => {
+    setTimeout(() => {
+      if (sub)  sub.textContent  = text;
+      if (fill) fill.style.width = pct + '%';
+    }, delay);
+  });
+  setTimeout(() => {
+    if (fill) fill.style.width = '100%';
+    setTimeout(onDone, 180);
+  }, 1300);
+}
+
+async function shareHorizon() {
+  if (!lastResult.freedomDateStr && !lastResult.unreachable) return;
+
+  const overlay = document.getElementById('gen-overlay');
+  overlay.classList.add('active');
+  document.getElementById('gen-bar-fill').style.width = '0%';
+
+  // Let fonts render first
+  await document.fonts.ready;
+
+  await new Promise(resolve => setTimeout(() => animateGenBar(resolve), 60));
+
+  try {
+    overlay.classList.remove('active');
+
+    const canvas = drawShareCard();
+
+    canvas.toBlob(async (blob) => {
+      const { freedomDateStr, unreachable } = lastResult;
+      const file = new File([blob], 'freedom-date.png', { type: 'image/png' });
+      const shareText = unreachable
+        ? `My horizon is unreachable — for now. Working on it.\n\nCalculate yours: freedomdate.io`
+        : `My freedom date is ${freedomDateStr}.\n\nI calculated my exact extraction point at freedomdate.io\n\nWhat's yours? 👇`;
+
+      // Mobile: native share sheet with file
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'My Freedom Date', text: shareText });
+          return;
+        } catch (e) {
+          if (e.name === 'AbortError') return;
+        }
+      }
+
+      // Desktop: download PNG + copy text
+      const url = URL.createObjectURL(blob);
+      const a   = document.createElement('a');
+      a.href = url; a.download = 'freedom-date.png'; a.click();
+      URL.revokeObjectURL(url);
+
+      try {
+        await navigator.clipboard.writeText(shareText);
+        showShareToast('PNG downloaded · Share text copied to clipboard');
+      } catch {
+        showShareToast('PNG downloaded to your device');
+      }
+    }, 'image/png', 1.0);
+
+  } catch (err) {
+    overlay.classList.remove('active');
+    showShareToast('Could not generate image — try again');
+    console.error(err);
+  }
+}
+function showShareToast(msg) {
+  let t = document.getElementById('share-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'share-toast';
+    t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#111108;color:#e2f530;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 24px;z-index:9999;border:2px solid #e2f530;white-space:nowrap;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 3500);
+}
+
+// ── TELEMETRY ────────────────────────────────────────────────────────────────
+
+const TELEMETRY_URL = 'https://script.google.com/macros/s/AKfycbxNGz8Kmgyj6_f8qI_EDVQKSKxiflUPmXataV7IxtaKSjMQlA7yK1TJpib9bZvqqrgWeQ/exec';
+
+function generateProtocolId() {
+  return 'FD-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,4).toUpperCase();
+}
+
+async function sendTelemetry(inputs, result, freedomDateStr) {
+  try {
+    const stripEmoji = s => (s || '').replace(/[\u{1F1E0}-\u{1F1FF}]{2}\s*/gu, '').trim();
+
+    const country     = isCalibrated
+      ? stripEmoji(document.getElementById('userCountry').value)
+      : stripEmoji(uwData.country || '');
+    const destination = isCalibrated
+      ? document.getElementById('targetDestination').value
+      : uwData.destination || '';
+    const situation   = isCalibrated
+      ? document.getElementById('userSituation').value
+      : uwData.situation || '';
+
+    const payload = {
+      protocol_id:      generateProtocolId(),
+      origin:           country,
+      destination:      destination,
+      situation:        situation,
+      monthly_col:      Math.round(isCalibrated
+        ? (parseFloat(document.getElementById('costOfLiving').value) || inputs.expenses)
+        : (uwData.fixed + uwData.lifestyle)),
+      total_debt:       Math.round(inputs.totalDebt),
+      current_savings:  Math.round(inputs.savings),
+      freedom_date:     freedomDateStr || '',
+      monthly_surplus:  Math.round(result.monthlyGap),
+      buffer:           Math.round(inputs.target),
+    };
+
+    await fetch(TELEMETRY_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    // Silent fail — never block the user
+  }
+}
+
+const REGION_COUNTRIES = {
+  'SE Asia':      [['Thailand', 1200], ['Vietnam', 1000], ['Indonesia (Bali)', 1500], ['Cambodia', 1000], ['Malaysia', 1400]],
+  'Latin America':[['Argentina', 1600], ['Colombia', 1400], ['Mexico', 1600], ['Brazil', 1600], ['Chile', 1800]],
+  'Europe':       [['Portugal', 1800], ['Spain', 1900], ['Georgia', 1000], ['Czech Republic', 1600], ['Poland', 1500]],
+  'Africa':       [['South Africa', 1400], ['Morocco', 1200], ['Kenya', 1100], ['Rwanda', 1100], ['Ghana', 1100]],
+  'Middle East':  [['UAE', 3000], ['Turkey', 1200], ['Jordan', 1500], ['Oman', 2200], ['Bahrain', 2200]],
+};
+
+let wizardData = { region: null, country: null, costPerMonth: 0, duration: 0, risk: 1 };
+
+function openWizard() {
+  document.getElementById('wizard').style.display = 'block';
+  document.getElementById('wizard-trigger').style.display = 'none';
+  showWizardStep(1);
+}
+
+function showWizardStep(n) {
+  [1,2,3,4].forEach(i => {
+    const el = document.getElementById('ws-' + i);
+    if (el) el.style.display = i === n ? 'block' : 'none';
+  });
+  document.getElementById('wizard-result').style.display = 'none';
+}
+
+function pickRegion(region) {
+  wizardData.region = region;
+  const countries = REGION_COUNTRIES[region];
+  const opts = document.getElementById('country-options');
+  opts.innerHTML = '';
+  countries.forEach(([name, cost]) => {
+    const btn = document.createElement('button');
+    btn.className = 'wiz-btn';
+    btn.textContent = name;
+    btn.onclick = () => pickCountry(name, cost);
+    opts.appendChild(btn);
+  });
+  showWizardStep(2);
+}
+
+function pickCountry(name, cost) {
+  wizardData.country = name;
+  wizardData.costPerMonth = cost;
+  showWizardStep(3);
+}
+
+function pickDuration(months) {
+  wizardData.duration = months;
+  showWizardStep(4);
+}
+
+function pickRisk(multiplier) {
+  wizardData.risk = multiplier;
+  const base = wizardData.costPerMonth * wizardData.duration;
+  const suggested = Math.round(base * multiplier / 100) * 100;
+  wizardData.suggested = suggested;
+
+  const riskLabel = multiplier === 1 ? 'lean buffer' : multiplier === 1.25 ? 'balanced buffer' : 'secure buffer';
+  document.getElementById('wizard-amount').textContent = '$' + suggested.toLocaleString();
+  document.getElementById('wizard-breakdown').textContent =
+    wizardData.duration + ' months in ' + wizardData.country + ' · $' + wizardData.costPerMonth + '/mo · ' + riskLabel;
+
+  [1,2,3,4].forEach(i => {
+    const el = document.getElementById('ws-' + i);
+    if (el) el.style.display = 'none';
+  });
+  document.getElementById('wizard-result').style.display = 'block';
+}
+
+function applyWizard() {
+  document.getElementById('target').value = wizardData.suggested;
+  // Set currency to USD
+  const sel = document.getElementById('targetCurr');
+  if (sel) sel.value = 'USD';
+  document.getElementById('wizard').style.display = 'none';
+  document.getElementById('wizard-trigger').style.display = 'inline-block';
+  // Scroll to confirm
+  document.getElementById('target').style.borderColor = 'var(--lime)';
+  setTimeout(() => { document.getElementById('target').style.borderColor = ''; }, 2000);
+}
+
+function resetWizard() {
+  wizardData = { region: null, country: null, costPerMonth: 0, duration: 0, risk: 1 };
+  showWizardStep(1);
+}
+
+</script>
+</body>
+</html>
